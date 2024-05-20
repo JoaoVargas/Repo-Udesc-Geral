@@ -66,6 +66,86 @@
   </li>
 </ul>
 
+<h3>
+  2023.2
+</h3>
+<ul>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.BAN">
+      BAN - Banco de Dados
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.CDI2">
+      CDI2 - Cálculo Diferencial e Integral 2
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.EDA">
+      EDA - Estrutura de Dados
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.ETI">
+      ETI - Ética em Informática
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.POO">
+      POO - Programação Orientada a Objetos
+      </a>
+    </h4>
+  </li>
+</ul>
+
+<h3>
+  2023.1
+</h3>
+<ul>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
+      AOC - Arquitetura e Organização de Computadores
+      </a>
+    </h4>
+  </li>
+</ul>
+
+<h3>
+  2022.2
+</h3>
+<ul>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
+      AOC - Arquitetura e Organização de Computadores
+      </a>
+    </h4>
+  </li>
+</ul>
+
+<h3>
+  2022.1
+</h3>
+<ul>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
+      AOC - Arquitetura e Organização de Computadores
+      </a>
+    </h4>
+  </li>
+</ul>
+
 <br>
 
 <h2 id="disciplinassemestre">
@@ -77,6 +157,29 @@
 <h2 id="modelos">
   Modelos
 </h2>
+<ul>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Modelos/Modelo%20Artigo%20SBC/Template_SBC">
+      Modelo SBC
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/blob/main/Modelos/Modelo%20TCC.docx">
+      Modelo TCC
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/blob/main/Modelos/Modelo%20PP%20Udesc.pptx">
+      Modelo PP
+      </a>
+    </h4>
+  </li>
+</ul>
 
 
 
