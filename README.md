@@ -29,22 +29,30 @@
 <ul>
   <li>
     <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
       AOC - Arquitetura e Organização de Computadores
+      </a>
     </h4>
   </li>
   <li>
     <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
       BAN2 - Banco de Dados 2
+      </a>
     </h4>
   </li>
   <li>
     <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
       OGMR - Optativa em Gerência e Mobilidade de Redes
+      </a>
     </h4>
   </li>
   <li>
     <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
       SOFT - Engenharia de Software
+      </a>
     </h4>
   </li>
 </ul>
