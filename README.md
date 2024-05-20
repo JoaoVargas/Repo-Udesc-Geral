@@ -180,14 +180,22 @@
   <li>
     <h4>
       <a href="https://docs.google.com/spreadsheets/d/1m1Yy97W_g0CGWV0V2sJaFn3GqphS-3jUhy-VH3Z_oDI/edit?usp=sharing">
-      Calculadora de Créditos
+      Calculadora de Créditos (Online GSheets)
+      </a>
+      <br>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/blob/main/Ferramentas/Tabela%20para%20Calcular%20o%20Creditos.xlsx">
+      Calculadora de Créditos (Excel)
       </a>
     </h4>
   </li>
   <li>
     <h4>
       <a href="https://docs.google.com/spreadsheets/d/1UkcBHYOWLfFdzO6uelhVPtpwqeRTFqIc92-FnasIr9I/edit?usp=sharing">
-      Calculadora de Matérias
+      Calculadora de Matérias (Online GSheets)
+      </a>
+      <br>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/blob/main/Ferramentas/Tabela%20Calcular%20Materias.xlsx">
+      Calculadora de Matérias (Excel)
       </a>
     </h4>
   </li>
