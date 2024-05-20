@@ -11,6 +11,8 @@
   •
   <a href="#disciplinasalfabetico">Disciplinas Alfabetica</a>
   •
+  <a href="#ferramentas">Ferramentas</a> 
+  •
   <a href="#modelos">Modelos</a> 
   •
 </p>
@@ -168,6 +170,28 @@
 <h2 id="disciplinasalfabetico">
   Disciplinas Listadas Alfabeticamente
 </h2>
+
+<br>
+
+<h2 id="ferramentas">
+  Ferramentas
+</h2>
+<ul>
+  <li>
+    <h4>
+      <a href="https://docs.google.com/spreadsheets/d/1m1Yy97W_g0CGWV0V2sJaFn3GqphS-3jUhy-VH3Z_oDI/edit?usp=sharing">
+      Calculadora de Créditos
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://docs.google.com/spreadsheets/d/1UkcBHYOWLfFdzO6uelhVPtpwqeRTFqIc92-FnasIr9I/edit?usp=sharing">
+      Calculadora de Matérias
+      </a>
+    </h4>
+  </li>
+</ul>
 
 <br>
 
