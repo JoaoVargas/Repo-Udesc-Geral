@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Exemplos: AFN e AFD</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <img src='https://g.gravizo.com/svg?
+digraph finite_state_machine_AFN {
+    rankdir=LR;
+    size="2.0"
+
+    node [shape = circle]; q0;
+    node [shape = point]; AFN
+
+    node [shape = doublecircle];
+    AFN -> q0;
+    q0  -> q1 [ label = "a" color="red" ];
+    q0  -> q0 [ label = "a" color="red" ];
+    q1 -> q1  [ label = "b" ];
+}
+'/>
+      <div>ER: a*ab* (Obs.: a*a = aa*)</div>
+<hr>
+    <img src='https://g.gravizo.com/svg?
+digraph finite_state_machine_AFD {
+    rankdir=LR;
+    size="3.0"
+
+    node [shape = point]; AFD
+    node [shape = circle]; q0;
+    node [shape = doublecircle]; q1; q2;
+    AFD -> q0;
+    q0  -> q1 [ label = "a"  ];
+    q1  -> q2  [ label = "b"  ];
+    q1 -> q1  [ label = "a" ];
+    q2 -> q2 [ label = "b" ];
+}
+'/>
+      <div>ER: aa*(bb* + ε) = a*ab*</div>
+    <script src="index.js">
+    </script>
+
+  </body>
+</html>

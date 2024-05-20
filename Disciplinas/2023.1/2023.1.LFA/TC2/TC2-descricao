@@ -1,0 +1,105 @@
+Atenção!!! Leiam todas as informações deste cabeçalho!
+
+Esta avaliação pode ser feita individualmente ou em dupla.
+
+No caso da escolha ser em DUPLA, tal escolha será PERMANENTE! Ou seja, a DUPLA definida, se for desfeita durante o semestre, seguirá como indivíduos, até o FINAL DO SEMESTRE!
+
+Importante! Identifiquem para qual exercício/questão que vocês estão enviando a sua resposta.
+
+Arquivos sempre com a extensão: .pdf
+
+NUNCA enviem as respostas (códigos) através dos comentários!
+
+Serão aceitas respostas enviadas SOMENTE através deste site! Nenhum resultado, enviado por email (ou outra forma), será considerado!!!
+
+Assim, sigam o seguinte exemplo:
+
+Para enviar o exercício no. 1 do TC02, o nome do arquivo deve ser:
+
+ex01-TC02-XYZ-WRK.c
+
+Sendo XYZ e WRK as iniciais dos nomes dos 2 alunos envolvidos (se for feito individualmente, considerar apenas as iniciais do aluno único).
+
+REPETINDO... NÃO enviem nenhuma resposta através do campo de comentários... apenas através do envio de arquivo! 
+
+As respostas não serão visíveis para o grupo (visualização individual).
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Desenvolva uma máquina de vendas de produtos, semelhante aquelas encontradas em aeroportos.
+
+Dock Machine – Vending Machines
+
+Dock Machine – Vending Machines
+
+Dock Machine – Vending Machines
+
+Especificação da máquina: a especificação deve ser realizada através de um Autômatos com Saída (moore ou mealy).
+
+Entrada: seleção do produto e forma de pagamento (dinheiro, moeda, cartão).
+
+Saída: negação do serviço (por algum motivo), entrega do produto e entrega do troco (eventualmente).
+
+ 
+
+Requisitos mínimos: oferta de 20 produtos, com a classificação dos mesmos (comida, bebida, etc.).
+
+Identificação do estoque: lembre-se que todos os produtos (em cada classificação) são finitos!
+
+Identificação de reposição: a necessidade de reposição (de cada produto) deve ser monitorada... (eventos? -> sugestão: composição síncrona de AFs).
+
+ 
+
+Obs.: você poderá utilizar outros formalismos, apresentado na disciplina, para complementar a sua solução.
+
+ 
+
+Resultados esperados:
+
+    Modelos utilizados, com as devidas explicações / justificativas de uso e funcionamento;
+    Implementação de um simulador (linguagem C ou Python), com base no(s) modelo(s) definido(s); e
+    Relatório detalhado, com exemplos.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[EMAIL]
+
+Olá turma,
+
+Escrevo para complementar a informação dada, na aula de ontem.
+Vocês poderão me contactar neste sábado (03/06 - aula assíncrona - 8hs / 11hs), para a solução de dúvidas do TF.
+
+Para me contactar, primeiro, vocês deverão me chamar pelo Whatsapp: +55 47 9123-0840.
+Importante! Não farei atendimento pelo Whatsapp!!!
+Depois que eu confirmar (no sentido de não estar atendendo algum aluno, naquele momento), enviarei o link da sala (google meet).
+
+Obrigado,
+Prof. Ricardo.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+[EMAIL]
+
+ Vou reapresentar o exemplo da última aula...
+
+
+
+Observem os AFs A e B, com destaque para o evento "a", em comum aos dois AFs.
+Assim, considerando um sistema que envolve os dois modelos, eventos ditos sincronizados DEVEM ocorrer em todos os modelos do sistema, apresentados de forma distinta.
+
+Ocorre que é plenamente possível obter o modelo A || B, diretamente.
+Porém, nem sempre (neste caso, poderia ser até fácil) será trivial obter um modelo único (AF) que descreve o comportamento de todo o sistema.
+
+Assim, a solução baseada na regra "dividir para conquistar" se mostra como sendo muito útil.
+Com isto, não é preciso construir o modelo A || B, pois é possível simular/executar o sistema, a partir das partes que formam o todo. Claro, é preciso destacar os eventos que são comuns, e estes devem ocorrer de maneira sincronizada.
+
+Portanto, o trabalho de vocês deve ser implementado de forma a simular todos os AFs, de forma distinta, e não através da construção do modelo A || B || C || ...
+
+Isto permite a vocês trabalharem de forma modularizada, sempre observando os eventos em comum.
+Digo eventos como ocorrências observadas o sistema (no caso do TF, a máquina de venda), claro, são aqueles pertencentes a cada sigma (de cada AF).
+
+O simulador de vocês deverá tratar de todos em comum, evoluindo (em termos de simulação) em cada AF envolvido, de acordo com a sequência de eventos.
+
+Claro, vocês poderão simular um A || B || C || ..., ou seja, um AF único. No entanto, o risco de erro de modelagem se torna grande, se vocês optarem pela construção direta (sem a análise por partes).
+
+Obrigado,
+Prof. Ricardo.

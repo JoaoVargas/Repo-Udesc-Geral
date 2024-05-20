@@ -1,0 +1,43 @@
+Atenção!!! Leiam todas as informações deste cabeçalho!
+
+Esta avaliação pode ser feita individualmente ou em dupla.
+
+No caso da escolha ser em DUPLA, tal escolha será PERMANENTE! Ou seja, a DUPLA definida, se for desfeita durante o semestre, seguirá como indivíduos, até o FINAL DO SEMESTRE!
+
+Importante! Identifiquem para qual exercício/questão que vocês estão enviando a sua resposta.
+
+Arquivos sempre com a extensão: .pdf
+
+NUNCA enviem as respostas (códigos) através dos comentários!
+
+Serão aceitas respostas enviadas SOMENTE através deste site! Nenhum resultado, enviado por email (ou outra forma), será considerado!!!
+
+Assim, sigam o seguinte exemplo:
+
+Para enviar o exercício no. 2 do EX01, o nome do arquivo deve ser:
+
+ex02-EX01-XYZ-WRK.c
+
+Sendo XYZ e WRK as iniciais dos nomes dos 2 alunos envolvidos (se for feito individualmente, considerar apenas as iniciais do aluno único).
+
+REPETINDO... NÃO enviem nenhuma resposta através do campo de comentários... apenas através do envio de arquivo! 
+
+As respostas não serão visíveis para o grupo (visualização individual).
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Desenvolva um simulador de AFDs, conforme discutido em sala de aula.
+
+Entrada: AFD e, posteriormente, avaliação da FITA.
+
+Saída: Indicação de aceitação/rejeição da palavra, na FITA.
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Turma, tenho alguns lembretes...
+
+1) Não pode mudar de dupla, durante as atividades (conforme indicado no cabeçalho);
+2) Linguagens de programação aceitas nesta tarefa: C (puro) ou Python;
+3) A entrada de dados (forma) é de responsabilidade de cada um de vocês.
+4) Os resultados devem ser entregues na forma de ARQUIVOS. NÃO será aceito qualquer resultado entregue através de um link, ou seja, armazenado em outra plataforma; e
+5) Apresentem alguns exemplos de execução... no sentido de demonstrar/validar a sua implementação.
