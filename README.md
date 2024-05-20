@@ -156,7 +156,7 @@
 <ul>
   <li>
     <h4>
-      <a href="hthttps://github.com/JoaoVargas/Repo-Udesc-Geral/blob/main/Disciplinas/2022.1/2022.1.LPG">
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2022.1/2022.1.LPG">
       LPG - Linguagem de Programação
       </a>
     </h4>
