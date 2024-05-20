@@ -113,8 +113,15 @@
 <ul>
   <li>
     <h4>
-      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
-      AOC - Arquitetura e Organização de Computadores
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.1/2023.1.CDI2">
+      CDI2 - Cálculo Diferencial e Integral 2
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.1/2023.1.LFA">
+      Linguagens Formais e Autômatos
       </a>
     </h4>
   </li>
@@ -126,8 +133,22 @@
 <ul>
   <li>
     <h4>
-      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
-      AOC - Arquitetura e Organização de Computadores
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2022.2/2022.2.AMS">
+      AMS - Análise e Modelagem de Sistemas
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2022.2/2022.2.ECC">
+      ECC - Eletrônica para Ciência da Computação
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2022.2/2022.2.MEP">
+      MEP - Metodologia da Pesquisa
       </a>
     </h4>
   </li>
@@ -139,8 +160,8 @@
 <ul>
   <li>
     <h4>
-      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
-      AOC - Arquitetura e Organização de Computadores
+      <a href="hthttps://github.com/JoaoVargas/Repo-Udesc-Geral/blob/main/Disciplinas/2022.1/2022.1.LPG">
+      LPG - Linguagem de Programação
       </a>
     </h4>
   </li>
