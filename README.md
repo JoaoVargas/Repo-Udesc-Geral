@@ -11,7 +11,9 @@
 </h4>
 <p align="center">
   •
-  <a href="#disciplinas">Disciplinas</a>
+  <a href="#disciplinassemestre">Disciplinas Semestre</a>
+  •
+  <a href="#disciplinasalfabetico">Disciplinas Alfabetica</a>
   •
   <a href="#modelos">Modelos</a> 
   •
@@ -19,8 +21,8 @@
 
 <br>
 
-<h2 id="disciplinas">
-  Disciplinas
+<h2 id="disciplinassemestre">
+  Disciplinas Listadas por Semestre
 </h2>
 
 <h3>
@@ -36,28 +38,39 @@
   </li>
   <li>
     <h4>
-      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.BAN2">
       BAN2 - Banco de Dados 2
       </a>
     </h4>
   </li>
   <li>
     <h4>
-      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.EMI">
+      EMI - Empreendedorismo em Informática
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.OGMR">
       OGMR - Optativa em Gerência e Mobilidade de Redes
       </a>
     </h4>
   </li>
   <li>
     <h4>
-      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.SOFT">
       SOFT - Engenharia de Software
       </a>
     </h4>
   </li>
 </ul>
 
+<br>
 
+<h2 id="disciplinassemestre">
+  Disciplinas Listadas Alfabeticamente
+</h2>
 
 <br>
 
