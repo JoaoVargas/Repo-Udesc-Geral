@@ -1,9 +1,5 @@
 <h1 align="center">
-  <!-- <br>
-  <img src="https://i.imgur.com/PW18Azn.png" alt="Não é o moodle" width="400">
-  <br> -->
   Repositório Geral Udesc
-  <br>
 </h1>
 
 <h4 align="center">
@@ -169,7 +165,7 @@
 
 <br>
 
-<h2 id="disciplinassemestre">
+<h2 id="disciplinasalfabetico">
   Disciplinas Listadas Alfabeticamente
 </h2>
 
@@ -201,14 +197,3 @@
     </h4>
   </li>
 </ul>
-
-
-
-<!-- <ul>
-  <li>
-    <h4>teste</h4>
-    alo
-  </li>
-</ul> -->
-
-
