@@ -119,7 +119,7 @@
   <li>
     <h4>
       <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.1/2023.1.LFA">
-      Linguagens Formais e Autômatos
+      LFA - Linguagens Formais e Autômatos
       </a>
     </h4>
   </li>
@@ -170,6 +170,120 @@
 <h2 id="disciplinasalfabetico">
   Disciplinas Listadas Alfabeticamente
 </h2>
+<ul>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2022.2/2022.2.AMS">
+      AMS - 2022/2 - Análise e Modelagem de Sistemas
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
+      AOC - 2024/1 - Arquitetura e Organização de Computadores
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.BAN">
+      BAN - 2023/2 - Banco de Dados
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.BAN2">
+      BAN2 - 2024/1 - Banco de Dados 2
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.1/2023.1.CDI2">
+      CDI2 - 2023/1 - Cálculo Diferencial e Integral 2
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.CDI2">
+      CDI2 - 2023/2 - Cálculo Diferencial e Integral 2
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2022.2/2022.2.ECC">
+      ECC - 2022/2 - Eletrônica para Ciência da Computação
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.EDA">
+      EDA - 2023/2 - Estrutura de Dados
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.EMI">
+      EMI - 2024/1 - Empreendedorismo em Informática
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.ETI">
+      ETI - 2023/2 - Ética em Informática
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.OGMR">
+      OGMR - 2024/1 - Optativa em Gerência e Mobilidade de Redes
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.1/2023.1.LFA">
+      LFA 2023/1 -Linguagens Formais e Autômatos
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2022.1/2022.1.LPG">
+      LPG - 2022/1 - Linguagem de Programação
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2022.2/2022.2.MEP">
+      MEP - 2022/2 - Metodologia da Pesquisa
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2023.2/2023.2.POO">
+      POO - 2023/2 - Programação Orientada a Objetos
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.SOFT">
+      SOFT - 2024/1 - Engenharia de Software
+      </a>
+    </h4>
+  </li>
+</ul>
 
 <br>
 
