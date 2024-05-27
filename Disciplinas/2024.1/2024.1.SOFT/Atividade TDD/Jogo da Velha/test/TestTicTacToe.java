@@ -10,12 +10,12 @@ public class TestTicTacToe {
         Board b = new Board();
 
         b.setPosition(new int[]{0,0}, 1);
-        b.setPosition(new int[]{1,1}, 1);
-        b.setPosition(new int[]{0,2}, 1);
-        b.setPosition(new int[]{2,1}, 1);
         b.setPosition(new int[]{0,1}, 2);
+        b.setPosition(new int[]{1,1}, 1);
         b.setPosition(new int[]{2,0}, 2);
+        b.setPosition(new int[]{0,2}, 1);
         b.setPosition(new int[]{2,2}, 2);
+        b.setPosition(new int[]{2,1}, 1);
         b.setPosition(new int[]{1,0}, 2);
 
         b.showBoard();
