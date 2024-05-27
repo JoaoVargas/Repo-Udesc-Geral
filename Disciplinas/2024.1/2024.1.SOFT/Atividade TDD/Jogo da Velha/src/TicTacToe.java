@@ -10,6 +10,8 @@
  * @author Administrador
  */
 import java.util.Scanner;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class TicTacToe {
     private Board board;
@@ -83,11 +85,6 @@ public class TicTacToe {
                 System.out.println("Full Board. Draw!");
                 return false;
             }
-
-            if(checkDraw()){
-                System.out.println("Draw!");
-                return false;
-            }
             who++;
             turn++;
 
@@ -112,7 +109,6 @@ public class TicTacToe {
 
     public boolean checkDraw(){
         boolean checkUltimoSlot = true;
-        int[] posFinal = {-1, -1};
 
         for (int linha = 0; linha < 3; linha++) {
             for (int coluna = 0; coluna < 3; coluna++) {
@@ -122,14 +118,10 @@ public class TicTacToe {
                     }
 
                     checkUltimoSlot = false;
-                    posFinal = new int[]{linha, coluna};
                 }
 //                System.out.println(this.board.getPosition(new int[]{linha,coluna}));
             }
         }
-
-        TicTacToe test = new TicTacToe(board, who, turn);
-
         return true;
     }
     
