@@ -122,6 +122,7 @@ public class TicTacToe {
 //                System.out.println(this.board.getPosition(new int[]{linha,coluna}));
             }
         }
+
         return true;
     }
     
