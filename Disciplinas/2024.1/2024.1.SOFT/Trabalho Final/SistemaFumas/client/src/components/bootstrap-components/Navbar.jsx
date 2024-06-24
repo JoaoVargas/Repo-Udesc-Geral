@@ -1,17 +1,22 @@
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GeneralContext } from '../../contexts/GeneralContext';
 
 import logo from '../../assets/logo-low.png'
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation().pathname;
   const { currentPage, setCurrentPage } = useContext(GeneralContext);
 
   const handleNavigate = (route) => {
     setCurrentPage(route);
     navigate(route);
   }
+
+  useEffect(() => {
+    setCurrentPage(location);
+  }, [])
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -61,12 +66,28 @@ const Navbar = () => {
                 Fornecedores
               </a>
             </li>
-            {/* <li className="nav-item">
-              <a className="nav-link" href="#">Pricing</a>
+            <li className="nav-item">
+              <a 
+              className={ 
+                currentPage == '/produtos/' 
+                ? "nav-link active cursor-pointer" 
+                : "nav-link cursor-pointer" }
+              aria-current="page" 
+              onClick={() => handleNavigate("/produtos/")}>
+                Produtos
+              </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li> */}
+              <a 
+              className={ 
+                currentPage == '/itens/' 
+                ? "nav-link active cursor-pointer" 
+                : "nav-link cursor-pointer" }
+              aria-current="page" 
+              onClick={() => handleNavigate("/itens/")}>
+                Itens
+              </a>
+            </li>
           </ul>
         </div>
       </div>

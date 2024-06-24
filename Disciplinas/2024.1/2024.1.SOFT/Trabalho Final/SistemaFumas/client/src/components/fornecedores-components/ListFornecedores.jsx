@@ -1,6 +1,7 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 
 import { GeneralContext } from "../../contexts/GeneralContext";
+import EditFornecedor from "./EditFornecedor";
 
 const ListFornecedores = () => {
 
@@ -16,14 +17,22 @@ const ListFornecedores = () => {
 
   return (
     <Fragment>
-      <h1 className="text-center m-5">
+      <h1 className="text-center mx-5 mt-5">
         Fornecedores
       </h1>
-      <div className="m-5 border border rounded-2 overflow-hidden">
+
+      <button 
+      type="button" 
+      className="btn btn-primary mx-5 mt-5"
+      data-bs-toggle="modal" 
+      data-bs-target={"#inputFornecedor"}>
+        Cadastrar Fornecedor
+      </button>
+
+      <div className="mx-5 mt-2 border border rounded-2 overflow-hidden">
         <table className="my-0 table table-striped table-hover table-borderless">
           <thead >
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">CNPJ</th>
               <th scope="col">Nome Fantasia</th>
               <th scope="col">CEP</th>
@@ -39,22 +48,23 @@ const ListFornecedores = () => {
                 </tr>
               : 
                 fornecedores.map(fornecedor => (
-                  <tr key={fornecedor.id_fornecedor}>
-                    <th scope="row"> {fornecedor.id_fornecedor} </th>
-                    <td>{ fornecedor.cnpj_fornecedor }</td>
+                  <tr key={fornecedor.cnpj_fornecedor}>
+                    <th scope="row">{ fornecedor.cnpj_fornecedor }</th>
                     <td>{ fornecedor.nome_fornecedor }</td>
                     <td>{ fornecedor.cep_fornecedor }</td>
                     <td>{ fornecedor.numero_fornecedor }</td>
                     <td> 
                       <i 
                       className="bi bi-pencil-square cursor-pointer"
-                      onClick={() => {console.log("pes")}}></i> 
+                      data-bs-toggle="modal" 
+                      data-bs-target={"#" + fornecedor.cnpj_fornecedor + "edit"}>
+                      </i> 
                     </td>
                     <td>
                       <i 
                       className="bi bi-trash3 text-danger cursor-pointer"
                       data-bs-toggle="modal" 
-                      data-bs-target={"#" + fornecedor.id_fornecedor}>
+                      data-bs-target={"#" + fornecedor.cnpj_fornecedor}>
                       </i>   
                     </td>
                   </tr>
@@ -63,6 +73,18 @@ const ListFornecedores = () => {
           </tbody>
         </table>
       </div>
+
+      {
+        fornecedores.length == 0 
+        ?
+          <div></div>
+        :
+          fornecedores.map( fornecedor => (
+            <EditFornecedor 
+            key={fornecedor.cnpj_fornecedor + "edit"}
+            fornecedor={fornecedor}/>
+          ))
+      }
       {
         fornecedores.length == 0 
         ?
@@ -71,17 +93,17 @@ const ListFornecedores = () => {
           fornecedores.map( fornecedor => (
             <div 
             className="modal fade" 
-            id={fornecedor.id_fornecedor}
-            key={fornecedor.id_fornecedor}
+            id={fornecedor.cnpj_fornecedor}
+            key={fornecedor.cnpj_fornecedor}
             tabIndex="-1" 
-            aria-labelledby={"Fornecedor"+ fornecedor.id_fornecedor + "Lable"}
+            aria-labelledby={"Fornecedor"+ fornecedor.cnpj_fornecedor + "Lable"}
             aria-hidden="true">
               <div className="modal-dialog">
                 <div className="modal-content">
                   <div className="modal-header">
                     <h1 
                     className="modal-title fs-5" 
-                    id={"Fornecedor"+ fornecedor.id_fornecedor + "Lable"}>
+                    id={"Fornecedor"+ fornecedor.cnpj_fornecedor + "Lable"}>
                       Deletar {fornecedor.nome_fornecedor} 
                     </h1>
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -102,7 +124,7 @@ const ListFornecedores = () => {
                     type="button" 
                     className="btn btn-danger"
                     data-bs-dismiss="modal"
-                    onClick={() => {handleDeleteClick(fornecedor.id_fornecedor)}}>
+                    onClick={() => {handleDeleteClick(fornecedor.cnpj_fornecedor)}}>
                       Deletar Fornecedor
                     </button>
                   </div>

@@ -4,15 +4,14 @@ import { Toaster } from 'react-hot-toast';
 
 import Navbar from "../components/bootstrap-components/Navbar";
 
-const Homepage = () => {
-
+const Itens = () => {
   return (
     <Fragment>
       <Toaster />
       <Navbar />
-      <h1>Home</h1>
+      <h1>Itens</h1>
     </Fragment>
   );
 }
 
-export default Homepage
+export default Itens

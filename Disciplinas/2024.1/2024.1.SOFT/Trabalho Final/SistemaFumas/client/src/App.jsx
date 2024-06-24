@@ -4,6 +4,8 @@ import { GeneralContextProvider } from "./contexts/GeneralContext.jsx";
 
 import Homepage from "./routes/Homepage.jsx";
 import Fornecedores from "./routes/Fornecedores.jsx";
+import Produtos from "./routes/Produtos.jsx";
+import Itens from "./routes/Itens.jsx";
 
 const App = () => {
   return (
@@ -16,8 +18,16 @@ const App = () => {
               element={<Homepage />}
               />
             <Route 
-              path="/fornecedores"
+              path="/fornecedores/"
               element={<Fornecedores />}
+              />
+            <Route 
+              path="/produtos/"
+              element={<Produtos />}
+              />
+            <Route 
+              path="/itens/"
+              element={<Itens />}
               />
           </Routes>
         </Router>

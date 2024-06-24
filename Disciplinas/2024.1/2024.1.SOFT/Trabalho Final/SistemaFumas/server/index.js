@@ -19,6 +19,7 @@ app.post("/fornecedores", async (req, res) => {
     res.json(newFornecedor.rows[0]);
   } catch (error) {
     console.error(error.message);
+    res.status(500).json({message: error.message});
   }
 })
 
@@ -36,12 +37,12 @@ app.get("/fornecedores", async (req, res) => {
 })
 
 // Get a
-app.get("/fornecedores/:id_fornecedor", async (req, res) => {
+app.get("/fornecedores/:cnpj_fornecedor", async (req, res) => {
   try {
-    const { id_fornecedor } = req.params;
+    const { cnpj_fornecedor } = req.params;
     const aFornecedor = await pool.query(
-      "SELECT * FROM fornecedores WHERE id_fornecedor = $1", 
-      [id_fornecedor]
+      "SELECT * FROM fornecedores WHERE cnpj_fornecedor = $1", 
+      [cnpj_fornecedor]
     )
 
     res.json(aFornecedor.rows[0]);
@@ -51,29 +52,38 @@ app.get("/fornecedores/:id_fornecedor", async (req, res) => {
 })
 
 // Update a
-app.put("/fornecedores/:id_fornecedor", async (req, res) => {
+app.put("/fornecedores/:cnpj_fornecedor", async (req, res) => {
   try {
-    const { id_fornecedor } = req.params;
+    const { cnpj_fornecedor } = req.params;
     const { cnpj, nome, cep, numero } = req.body;
 
+    console.log(req.params);
+    console.log(req.body);
+
     const updateFornecedor = await pool.query(
-      "UPDATE fornecedores SET cnpj_fornecedor = $1, nome_fornecedor = $2, cep_fornecedor = $3, numero_fornecedor = $4 WHERE id_fornecedor = $5 RETURNING *",
-      [ cnpj, nome, cep, numero, id_fornecedor ]
+      `UPDATE fornecedores 
+      SET cnpj_fornecedor = $1, 
+        nome_fornecedor = $2, 
+        cep_fornecedor = $3,
+        numero_fornecedor = $4
+      WHERE cnpj_fornecedor = $5 RETURNING *`,
+      [ cnpj, nome, cep, numero, cnpj_fornecedor ]
     )
 
-    res.json(fornecedor.rows[0]);
+    res.json(updateFornecedor.rows[0]);
+    console.log((updateFornecedor.rows[0]));
   } catch (error) {
     console.error(error.message);
   }
 })
 
 // Delete a
-app.delete("/fornecedores/:id_fornecedor", async (req, res) => {
+app.delete("/fornecedores/:cnpj_fornecedor", async (req, res) => {
   try {
-    const { id_fornecedor } = req.params;
+    const { cnpj_fornecedor } = req.params;
     const deleteFornecedor = await pool.query(
-      "DELETE FROM fornecedores WHERE id_fornecedor = $1 RETURNING *", 
-      [id_fornecedor]
+      "DELETE FROM fornecedores WHERE cnpj_fornecedor = $1 RETURNING *", 
+      [cnpj_fornecedor]
     )
 
     res.json(deleteFornecedor.rows);
