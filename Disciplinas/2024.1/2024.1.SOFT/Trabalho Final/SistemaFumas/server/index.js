@@ -72,7 +72,7 @@ app.delete("/fornecedores/:id_fornecedor", async (req, res) => {
   try {
     const { id_fornecedor } = req.params;
     const deleteFornecedor = await pool.query(
-      "DELETE * FROM fornecedores WHERE id_fornecedor = $1", 
+      "DELETE FROM fornecedores WHERE id_fornecedor = $1 RETURNING *", 
       [id_fornecedor]
     )
 
