@@ -88,8 +88,4 @@ app.delete("/fornecedores/:cnpj_fornecedor", async (req, res) => {
   }
 });
 
-
-app.listen( process.env.SERVERPORT, () => {
-    console.log(`Server Initialized on port: ${process.env.SERVERPORT}`);
-  }
-);
+module.exports = app; // Exportando apenas a aplicação
