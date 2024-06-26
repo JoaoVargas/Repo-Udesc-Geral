@@ -8,7 +8,6 @@ export const GeneralContext = createContext();
 export const GeneralContextProvider = (props) => {
   // const [teste, setTeste] = useState("teste")
   const [ currentPage, setCurrentPage ] = useState("/");
-  const [ errorMsg, setErrorMsg ] = useState("");
 
 
   //FORNECEDORES
@@ -93,18 +92,120 @@ export const GeneralContextProvider = (props) => {
     }
   }
 
+  // PRODUTOS
+  const [ produtos, setProdutos ] = useState([]);
+
+  const inputProduto = async (body) => {
+    try {
+      const response = await fetch("http://localhost:3000/produtos", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      })
+
+      if (!response.ok) {
+        const responseJson = await response.json()
+        toast.error(responseJson.message);
+        return;
+      }
+
+      toast.success("Produto adicionado com sucesso.")
+      getProdutos();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+  
+  const editProduto = async (object) => {
+    const param = {
+      id_produto: object.id
+    }
+    const body = {
+      cnpj_fornecedor_produto: object.cnpjFornecedor, 
+      nome_produto: object.nome, 
+      marca_produto: object.marca, 
+      tipo_unidade_produto: object.tipoUnidade,
+      quantidade_unidades_produto: object.quantidade,
+      preco_produto: object.preco,
+    }
+    
+    try {
+      const response = await fetch(`http://localhost:3000/produtos/${object.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        param: JSON.stringify(param)
+      })
+      
+      if (!response.ok) {
+        const responseJson = await response.json();
+        toast.error(responseJson.message);
+        return;
+      }
+      
+      toast.success("Produto editado com sucesso.")
+      getProdutos();
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+  
+  const getProdutos = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/produtos");
+
+      if (!response.ok) {
+        const jsonData = await response.json();
+        toast.error(jsonData.message);
+        return;
+      }
+
+      const jsonData = await response.json();
+      setProdutos(jsonData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const deleteProduto = async (id_produto) => {
+    console.log(id_produto);
+
+    try {
+      const response = await fetch(`http://localhost:3000/produtos/${id_produto}`, {
+        method: "DELETE"
+      });
+
+      if (!response.ok) {
+        const jsonData = await response.json()
+        toast.error(jsonData.message);
+        return;
+      }
+
+      const jsonData = await response.json()
+      console.log(jsonData);
+      toast.success(`Produto deletado com sucesso.`);
+      getProdutos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <GeneralContext.Provider
       value={{
         currentPage, setCurrentPage,
         fornecedores, inputFornecedor, getFornecedores, deleteFornecedor, editFornecedor,
-        errorMsg, setErrorMsg,
+        produtos, inputProduto, getProdutos, editProduto, deleteProduto
       }}
     >
       {props.children}
       <Toaster   
       toastOptions={{
-        className: 'rounded border',
+        className: 'rounded',
+            style: {
+              background: '#202428',
+              color: '#F7F8F9',
+            },
       }}
       position="top-right"/>
     </GeneralContext.Provider>

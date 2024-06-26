@@ -20,7 +20,6 @@ const InputFornecedor = () => {
 
 
   return (
-    <Fragment>
       <div 
       className="modal fade" 
       id={"inputFornecedor"}
@@ -116,7 +115,6 @@ const InputFornecedor = () => {
           </div>
         </div>
       </div>
-    </Fragment>
   );
 }
 

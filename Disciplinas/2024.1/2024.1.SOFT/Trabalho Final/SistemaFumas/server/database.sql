@@ -1,5 +1,9 @@
 CREATE DATABASE IF NOT EXISTS fumasdb;
 
+
+
+-- TABELA E TRIGGERS DE FORNECEDORES
+-- Tabela Fornecedores
 CREATE TABLE IF NOT EXISTS fornecedores (
   cnpj_fornecedor VARCHAR(14) NOT NULL,
   nome_fornecedor VARCHAR(255) NOT NULL,
@@ -8,6 +12,7 @@ CREATE TABLE IF NOT EXISTS fornecedores (
   CONSTRAINT cnpj_fornecedor_pkey PRIMARY KEY (cnpj_fornecedor),
 );
 
+-- Funcao AUX pro trigger CNPJ único
 CREATE OR REPLACE FUNCTION verificaCnpj(new_cnpj VARCHAR(14),
 old_cnpj VARCHAR(14)) 
 RETURNS void AS 
@@ -25,6 +30,7 @@ END;
 $$
 LANGUAGE plpgsql;
 
+-- Trigger CNPJ único insert
 CREATE OR REPLACE FUNCTION verificaCnpjInsert() 
 RETURNS trigger AS 
 $$
@@ -38,6 +44,7 @@ CREATE OR REPLACE TRIGGER verificaCnpjInsert
 BEFORE INSERT ON fornecedores 
 FOR ROW EXECUTE PROCEDURE verificaCnpjInsert();
 
+-- Trigger CNPJ único update
 CREATE OR REPLACE FUNCTION verificaCnpjUpdate() 
 RETURNS trigger AS 
 $$
@@ -51,6 +58,7 @@ CREATE OR REPLACE TRIGGER verificaCnpjUpdate
 BEFORE UPDATE ON fornecedores 
 FOR ROW EXECUTE PROCEDURE verificaCnpjUpdate();
 
+-- Trigger fornecedor vazio
 CREATE OR REPLACE FUNCTION verificaFornecedorVazio() 
 RETURNS trigger AS 
 $$
@@ -65,3 +73,33 @@ LANGUAGE plpgsql;
 CREATE OR REPLACE TRIGGER verificaFornecedorVazio 
 BEFORE INSERT OR UPDATE ON fornecedores 
 FOR ROW EXECUTE PROCEDURE verificaFornecedorVazio();
+
+
+-- TABELA E TRIGGERS DE PRODUTOS
+CREATE TABLE public.produtos (
+    id_produto serial NOT NULL,
+    cnpj_fornecedor_produto character varying(14) NOT NULL,
+    nome_produto character varying(100) NOT NULL,
+    marca_produto character varying(100) NOT NULL,
+    tipo_unidade_produto character varying(2) NOT NULL,
+    quantidade_unidades_produto real NOT NULL,
+    preco_produto real NOT NULL,
+    CONSTRAINT id_produto_pkey PRIMARY KEY (id_produto),
+    UNIQUE (id_produto),
+    CONSTRAINT cnpj_fornecedor_produto_fkey FOREIGN KEY (cnpj_fornecedor_produto)
+        REFERENCES public.fornecedores (cnpj_fornecedor) MATCH SIMPLE
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+        NOT VALID
+);
+
+
+
+-- TABELA E TRIGGERS DE PRECOS
+CREATE TABLE public.historico_preco (
+  id_produto_preco integer NOT NULL,
+  preco_produto_preco real NOT NULL,
+  data_preco timestamp without time zone NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id_produto_preco),
+  CONSTRAINT id_produto_preco_fkey FOREIGN KEY (id_produto_preco) REFERENCES public.produtos (id_produto) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE NOT VALID
+);

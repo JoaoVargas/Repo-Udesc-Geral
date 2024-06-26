@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect } from "react";
 
 import { GeneralContext } from "../../contexts/GeneralContext";
 import EditFornecedor from "./EditFornecedor";
@@ -17,20 +17,22 @@ const ListFornecedores = () => {
 
   return (
     <Fragment>
-      <h1 className="text-center mx-5 mt-5">
+      <h1 className="text-center mx-5 mt-4">
         Fornecedores
       </h1>
 
       <button 
       type="button" 
-      className="btn btn-primary mx-5 mt-5"
+      className="btn btn-primary mx-5 mt-4"
       data-bs-toggle="modal" 
       data-bs-target={"#inputFornecedor"}>
         Cadastrar Fornecedor
       </button>
 
-      <div className="mx-5 mt-2 border border rounded-2 overflow-hidden">
-        <table className="my-0 table table-striped table-hover table-borderless">
+      <div 
+      className="mx-5 mt-2 border rounded-2"
+      style={{ maxHeight: '500px', overflowY: 'auto' }}>
+        <table className="my-0 table table-striped table-hover table-borderless table-responsive">
           <thead >
             <tr>
               <th scope="col">CNPJ</th>

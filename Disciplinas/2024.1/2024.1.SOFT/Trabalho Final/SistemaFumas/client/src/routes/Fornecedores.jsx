@@ -6,7 +6,7 @@ import ListFornecedores from "../components/fornecedores-components/ListForneced
 
 const Fornecedores = () => {
   return (
-    <Fragment>
+    <Fragment >
       <Navbar />
       <ListFornecedores />
       <InputFornecedor />
