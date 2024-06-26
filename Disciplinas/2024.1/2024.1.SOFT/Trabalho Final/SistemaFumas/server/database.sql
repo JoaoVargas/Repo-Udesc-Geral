@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS fornecedores (
   nome_fornecedor VARCHAR(255) NOT NULL,
   cep_fornecedor  VARCHAR(8) NOT NULL,
   numero_fornecedor VARCHAR(10) NOT NULL,
-  CONSTRAINT cnpj_fornecedor_pkey PRIMARY KEY (cnpj_fornecedor),
+  CONSTRAINT cnpj_fornecedor_pkey 
+    PRIMARY KEY (cnpj_fornecedor),
 );
 
 -- Funcao AUX pro trigger CNPJ único
@@ -75,31 +76,61 @@ BEFORE INSERT OR UPDATE ON fornecedores
 FOR ROW EXECUTE PROCEDURE verificaFornecedorVazio();
 
 
+
 -- TABELA E TRIGGERS DE PRODUTOS
+-- Tabela produtos
 CREATE TABLE public.produtos (
-    id_produto serial NOT NULL,
-    cnpj_fornecedor_produto character varying(14) NOT NULL,
-    nome_produto character varying(100) NOT NULL,
-    marca_produto character varying(100) NOT NULL,
-    tipo_unidade_produto character varying(2) NOT NULL,
-    quantidade_unidades_produto real NOT NULL,
-    preco_produto real NOT NULL,
-    CONSTRAINT id_produto_pkey PRIMARY KEY (id_produto),
+  id_produto serial NOT NULL,
+  cnpj_fornecedor_produto character varying(14) NOT NULL,
+  nome_produto character varying(100) NOT NULL,
+  marca_produto character varying(100) NOT NULL,
+  tipo_unidade_produto character varying(2) NOT NULL,
+  quantidade_unidades_produto real NOT NULL,
+  preco_produto real NOT NULL,
+  CONSTRAINT id_produto_pkey 
+    PRIMARY KEY (id_produto),
     UNIQUE (id_produto),
-    CONSTRAINT cnpj_fornecedor_produto_fkey FOREIGN KEY (cnpj_fornecedor_produto)
-        REFERENCES public.fornecedores (cnpj_fornecedor) MATCH SIMPLE
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-        NOT VALID
+  CONSTRAINT cnpj_fornecedor_produto_fkey 
+    FOREIGN KEY (cnpj_fornecedor_produto)
+    REFERENCES public.fornecedores (cnpj_fornecedor) 
+    MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID
 );
 
 
 
 -- TABELA E TRIGGERS DE PRECOS
+-- Tabela precos
 CREATE TABLE public.historico_preco (
   id_produto_preco integer NOT NULL,
   preco_produto_preco real NOT NULL,
   data_preco timestamp without time zone NOT NULL DEFAULT NOW(),
   PRIMARY KEY (id_produto_preco),
-  CONSTRAINT id_produto_preco_fkey FOREIGN KEY (id_produto_preco) REFERENCES public.produtos (id_produto) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE NOT VALID
+  CONSTRAINT id_produto_preco_fkey FOREIGN KEY (id_produto_preco)
+    REFERENCES public.produtos (id_produto) 
+    MATCH SIMPLE 
+    ON UPDATE CASCADE 
+    ON DELETE CASCADE 
+    NOT VALID
 );
+
+-- Trigger adicionar historico
+CREATE OR REPLACE FUNCTION addHistoricoPreco()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO historico_preco (id_produto_preco, preco_produto_preco, data_preco)
+    VALUES (NEW.id_produto, NEW.preco_produto, NOW());
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER addHistoricoPrecoUpdate
+AFTER UPDATE OF preco_produto ON produtos
+FOR EACH ROW
+WHEN (OLD.preco_produto IS DISTINCT FROM NEW.preco_produto)
+EXECUTE FUNCTION addHistoricoPreco();
+CREATE TRIGGER addHistoricoPrecoInsert
+AFTER INSERT ON produtos
+FOR EACH ROW
+EXECUTE FUNCTION addHistoricoPreco();

@@ -1,5 +1,4 @@
 import { Fragment, useContext } from "react";
-
 import { Toaster } from 'react-hot-toast';
 
 import Navbar from "../components/bootstrap-components/Navbar";

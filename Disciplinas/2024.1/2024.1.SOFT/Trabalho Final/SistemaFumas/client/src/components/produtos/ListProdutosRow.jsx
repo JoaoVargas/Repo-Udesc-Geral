@@ -1,8 +1,23 @@
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { GeneralContext } from "../../contexts/GeneralContext";
+
 const ListProdutosRow = ( { produto } ) => {
+  const navigate = useNavigate();
+  const { setCurrentPage } = useContext(GeneralContext);
 
   return (
     <tr>
-      <th scope="row">{ produto.id_produto }</th>
+      <th scope="row">
+        <a 
+        className="link cursor-pointer"
+        onClick={() => {
+          setCurrentPage(`none`);
+          navigate(`/produtos/${ produto.id_produto }`);
+        }}>
+          { produto.id_produto }
+        </a>
+      </th>
       <td>{ produto.cnpj_fornecedor_produto }</td>
       <td>{ produto.nome_produto }</td>
       <td>{ produto.marca_produto }</td>

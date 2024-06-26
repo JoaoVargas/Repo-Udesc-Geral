@@ -93,6 +93,7 @@ export const GeneralContextProvider = (props) => {
   }
 
   // PRODUTOS
+  const [ produto, setProduto ] = useState({});
   const [ produtos, setProdutos ] = useState([]);
 
   const inputProduto = async (body) => {
@@ -167,6 +168,24 @@ export const GeneralContextProvider = (props) => {
     }
   }
 
+  const getProduto = async (id_produto) => {
+    try {
+      const response = await fetch(`http://localhost:3000/produtos/${id_produto}`);
+
+      if (!response.ok) {
+        const jsonData = await response.json();
+        toast.error(jsonData.message);
+        return;
+      }
+
+      const jsonData = await response.json();
+      setProduto(await jsonData);
+      console.log(jsonData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const deleteProduto = async (id_produto) => {
     console.log(id_produto);
 
@@ -195,6 +214,7 @@ export const GeneralContextProvider = (props) => {
       value={{
         currentPage, setCurrentPage,
         fornecedores, inputFornecedor, getFornecedores, deleteFornecedor, editFornecedor,
+        produto, getProduto,
         produtos, inputProduto, getProdutos, editProduto, deleteProduto
       }}
     >

@@ -8,13 +8,13 @@ jest.mock('../db', () => ({
   end: jest.fn()
 }));
 
-describe('API /fornecedores', () => {
+describe('API /produtos', () => {
   afterAll(() => {
     pool.end(); // Certifique-se de que o pool de conexões seja fechado
   });
 
   // Teste para o endpoint de criação de fornecedor
-  it('Deve criar um novo fornecedor', async () => {
+  it('Deve criar um novo  e um produto para ele', async () => {
     const newFornecedor = {
       cnpj: '12345678901234',
       nome: 'Fornecedor Teste',
@@ -30,6 +30,26 @@ describe('API /fornecedores', () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual(newFornecedor);
+  });
+
+  it('Deve criar um novo  e um produto para ele', async () => {
+    const newProduto = {
+      cnpj: '12345678901234',
+      nome: 'Produto Teste',
+      marca: 'Marca Teste',
+      tipo: 'CX',
+      quantidade: '12',
+      preco: '12.3',
+    };
+
+    pool.query.mockResolvedValueOnce({ rows: [newProduto] });
+
+    const response = await request(app)
+      .post('/produtos')
+      .send(newProduto);
+
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toEqual(newProduto);
   });
 
   // Teste para obter todos os fornecedores

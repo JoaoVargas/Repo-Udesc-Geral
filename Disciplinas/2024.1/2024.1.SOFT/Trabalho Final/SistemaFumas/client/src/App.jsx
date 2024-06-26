@@ -6,6 +6,7 @@ import Homepage from "./routes/Homepage.jsx";
 import Fornecedores from "./routes/Fornecedores.jsx";
 import Produtos from "./routes/Produtos.jsx";
 import Itens from "./routes/Itens.jsx";
+import ProdutoDetalhe from "./routes/ProdutoDetalhe.jsx";
 
 const App = () => {
   return (
@@ -24,6 +25,10 @@ const App = () => {
             <Route 
               path="/produtos/"
               element={<Produtos />}
+              />
+            <Route 
+              path="/produtos/:id_produto"
+              element={<ProdutoDetalhe />}
               />
             <Route 
               path="/itens/"
