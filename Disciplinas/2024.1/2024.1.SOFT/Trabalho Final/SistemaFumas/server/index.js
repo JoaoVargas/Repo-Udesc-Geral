@@ -39,10 +39,16 @@ app.get("/fornecedores", async (req, res) => {
 app.get("/fornecedores/:cnpj_fornecedor", async (req, res) => {
   try {
     const { cnpj_fornecedor } = req.params;
+
+    if (cnpj_fornecedor == "undefined") {
+      return
+    }
+
     const aFornecedor = await pool.query(
       "SELECT * FROM fornecedores WHERE cnpj_fornecedor = $1",
       [cnpj_fornecedor]
     );
+
     res.json(aFornecedor.rows[0]);
   } catch (error) {
     console.error(error.message);
@@ -140,6 +146,11 @@ app.get("/produtos", async (req, res) => {
 app.get("/produtos/:id_produto", async (req, res) => {
   try {
     const { id_produto } = req.params;
+
+    if (id_produto == "undefined") {
+      return
+    }
+
     const aProduto = await pool.query(
       "SELECT * FROM produtos WHERE id_produto = $1",
       [id_produto]
@@ -198,6 +209,28 @@ app.delete("/produtos/:id_produto", async (req, res) => {
     );
 
     res.json(deleteProduto.rows);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// HISTORICO
+// Get a
+app.get("/historicos/:id_produto", async (req, res) => {
+  try {
+    const { id_produto } = req.params;
+
+    if (id_produto == "undefined") {
+      return
+    }
+
+    const aHistorico = await pool.query(
+      "SELECT * FROM historico_preco WHERE id_produto_preco = $1",
+      [id_produto]
+    );
+
+    res.json(aHistorico.rows);
   } catch (error) {
     console.error(error.message);
     res.status(500).json({ message: error.message });

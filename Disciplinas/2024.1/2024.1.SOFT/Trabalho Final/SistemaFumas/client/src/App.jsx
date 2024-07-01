@@ -7,6 +7,7 @@ import Fornecedores from "./routes/Fornecedores.jsx";
 import Produtos from "./routes/Produtos.jsx";
 import Itens from "./routes/Itens.jsx";
 import ProdutoDetalhe from "./routes/ProdutoDetalhe.jsx";
+import FornecedorDetalhe from "./routes/FornecedorDetalhe.jsx";
 
 const App = () => {
   return (
@@ -21,6 +22,10 @@ const App = () => {
             <Route 
               path="/fornecedores/"
               element={<Fornecedores />}
+              />
+            <Route 
+              path="/fornecedores/:cnpj_fornecedor"
+              element={<FornecedorDetalhe />}
               />
             <Route 
               path="/produtos/"

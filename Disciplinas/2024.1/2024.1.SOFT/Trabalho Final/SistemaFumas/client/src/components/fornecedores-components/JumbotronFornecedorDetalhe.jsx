@@ -1,23 +1,29 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GeneralContext } from "../../contexts/GeneralContext";
 import { useNavigate } from "react-router-dom";
 
 
-const JumbotronProdutoDetalhe = ( { produto }) => {
+const JumbotronFornecedorDetalhe = ( { fornecedor }) => {
   const navigate = useNavigate();
-  const { fornecedor, getFornecedor, setCurrentPage } = useContext(GeneralContext);
+  const { produtos, getProdutos, setCurrentPage } = useContext(GeneralContext);
+  const [ produtosFunc, setProdutosFunc ] = useState([]);
 
   useEffect(() => {
-    getFornecedor( produto.cnpj_fornecedor_produto );
-  }, [produto])
+    getProdutos();
+    setProdutosFunc(produtos.map(produto => {
+      if (produto.cnpj_fornecedor_produto == fornecedor.cnpj_fornecedor) {
+        return produto
+      }
+    }))
+  }, [])
 
   return (
     <div className="p-5 bg-body-tertiary rounded-3">
       <div className="container-fluid">
         <h1 className="display-5 fw-bold text-center">
-          Produto {produto.id_produto}
+          Fornecedor {fornecedor.cnpj_fornecedor}
         </h1>
-        <div className="d-flex flex-column flex-wrap justify-content-between">
+        {/* <div className="d-flex flex-column flex-wrap justify-content-between">
           <div className="d-flex flex-row flex-wrap justify-content-between">
             <p>
               <b>CNPJ do Fornecedor: </b> 
@@ -51,10 +57,10 @@ const JumbotronProdutoDetalhe = ( { produto }) => {
               <b>Preço Atual:</b> {produto.preco_produto} R$
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
 }
 
-export default JumbotronProdutoDetalhe
+export default JumbotronFornecedorDetalhe

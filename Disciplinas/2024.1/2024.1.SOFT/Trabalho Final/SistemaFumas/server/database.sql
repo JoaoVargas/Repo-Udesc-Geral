@@ -104,10 +104,13 @@ CREATE TABLE public.produtos (
 -- TABELA E TRIGGERS DE PRECOS
 -- Tabela precos
 CREATE TABLE public.historico_preco (
+  id_historico serial NOT NULL,
   id_produto_preco integer NOT NULL,
   preco_produto_preco real NOT NULL,
   data_preco timestamp without time zone NOT NULL DEFAULT NOW(),
-  PRIMARY KEY (id_produto_preco),
+  CONSTRAINT id_historico_pkey 
+    PRIMARY KEY (id_historico),
+    UNIQUE (id_historico),
   CONSTRAINT id_produto_preco_fkey FOREIGN KEY (id_produto_preco)
     REFERENCES public.produtos (id_produto) 
     MATCH SIMPLE 

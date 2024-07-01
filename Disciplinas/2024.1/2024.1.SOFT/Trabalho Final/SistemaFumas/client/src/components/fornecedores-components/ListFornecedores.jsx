@@ -2,10 +2,11 @@ import { Fragment, useContext, useEffect } from "react";
 
 import { GeneralContext } from "../../contexts/GeneralContext";
 import EditFornecedor from "./EditFornecedor";
+import { useNavigate } from "react-router-dom";
 
 const ListFornecedores = () => {
-
-  const { fornecedores, getFornecedores, deleteFornecedor } = useContext(GeneralContext);
+  const navigate = useNavigate();
+  const { fornecedores, getFornecedores, deleteFornecedor, setCurrentPage } = useContext(GeneralContext);
 
   const handleDeleteClick = (id) => {
     deleteFornecedor(id);
@@ -51,7 +52,16 @@ const ListFornecedores = () => {
               : 
                 fornecedores.map(fornecedor => (
                   <tr key={fornecedor.cnpj_fornecedor}>
-                    <th scope="row">{ fornecedor.cnpj_fornecedor }</th>
+                    <th scope="row">
+                      <a 
+                      className="link cursor-pointer"
+                      onClick={() => {
+                        setCurrentPage(`none`);
+                        navigate(`/fornecedores/${ fornecedor.cnpj_fornecedor }`);
+                      }}>
+                        { fornecedor.cnpj_fornecedor }
+                      </a>
+                    </th>
                     <td>{ fornecedor.nome_fornecedor }</td>
                     <td>{ fornecedor.cep_fornecedor }</td>
                     <td>{ fornecedor.numero_fornecedor }</td>

@@ -11,6 +11,7 @@ export const GeneralContextProvider = (props) => {
 
 
   //FORNECEDORES
+  const [ fornecedor, setFornecedor ] = useState({});
   const [ fornecedores, setFornecedores ] = useState([]);
 
   const inputFornecedor = async (body) => {
@@ -72,6 +73,23 @@ export const GeneralContextProvider = (props) => {
       const jsonData = await response.json();
 
       setFornecedores(jsonData);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const getFornecedor = async (cnpj_fornecedor) => {
+    try {
+      const response = await fetch(`http://localhost:3000/fornecedores/${cnpj_fornecedor}`);
+
+      if (!response.ok) {
+        const jsonData = await response.json();
+        toast.error(jsonData.message);
+        return;
+      }
+
+      const jsonData = await response.json();
+      setFornecedor(await jsonData);
     } catch (error) {
       console.error(error);
     }
@@ -180,7 +198,6 @@ export const GeneralContextProvider = (props) => {
 
       const jsonData = await response.json();
       setProduto(await jsonData);
-      console.log(jsonData);
     } catch (error) {
       console.error(error);
     }
@@ -201,9 +218,36 @@ export const GeneralContextProvider = (props) => {
       }
 
       const jsonData = await response.json()
-      console.log(jsonData);
       toast.success(`Produto deletado com sucesso.`);
       getProdutos();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // HISTORICO
+  const [ historico, setHistorico ] = useState([]);
+
+  const getHistorico = async (id_produto) => {
+    try {
+      const response = await fetch(`http://localhost:3000/historicos/${id_produto}`);
+
+      if (!response.ok) {
+        const jsonData = await response.json();
+        toast.error(jsonData.message);
+        return;
+      }
+
+      const jsonData = await response.json();
+
+      setHistorico(await jsonData.map((item) => {
+        item.data_preco = new Date(item.data_preco)
+          .toLocaleString('pt-BR', {
+            dateStyle: 'short',
+            timeStyle: 'medium',
+          });
+        return item
+      }));
     } catch (error) {
       console.error(error);
     }
@@ -213,9 +257,11 @@ export const GeneralContextProvider = (props) => {
     <GeneralContext.Provider
       value={{
         currentPage, setCurrentPage,
+        fornecedor, getFornecedor,
         fornecedores, inputFornecedor, getFornecedores, deleteFornecedor, editFornecedor,
         produto, getProduto,
-        produtos, inputProduto, getProdutos, editProduto, deleteProduto
+        produtos, inputProduto, getProdutos, editProduto, deleteProduto,
+        historico, getHistorico
       }}
     >
       {props.children}
