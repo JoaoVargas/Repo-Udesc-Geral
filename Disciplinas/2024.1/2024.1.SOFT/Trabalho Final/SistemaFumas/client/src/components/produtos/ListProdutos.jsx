@@ -42,6 +42,8 @@ const ListProdutos = () => {
               <th scope="col">Tipo Unidade</th>
               <th scope="col">Quantidade</th>
               <th scope="col">Preço</th>
+              <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
@@ -49,7 +51,7 @@ const ListProdutos = () => {
             produtos.length == 0 
               ? 
                 <tr>
-                  <th colSpan="7" scope="row" className="text-center">Não há produtos cadastrados</th>
+                  <th colSpan="9" scope="row" className="text-center">Não há produtos cadastrados</th>
                 </tr>
               : 
                 produtos.map(produto => (

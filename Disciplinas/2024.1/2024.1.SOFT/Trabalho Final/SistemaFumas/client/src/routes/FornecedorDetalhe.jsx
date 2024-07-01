@@ -4,17 +4,29 @@ import { useParams } from "react-router-dom";
 import Navbar from "../components/bootstrap-components/Navbar";
 import { GeneralContext } from "../contexts/GeneralContext";
 import JumbotronFornecedorDetalhe from "../components/fornecedores-components/JumbotronFornecedorDetalhe";
+import JumbotronListaProdutosFornecedor from "../components/fornecedores-components/JumbotronListaProdutosFornecedor";
 
 
 const FornecedorDetalhe = () => {
   const { cnpj_fornecedor } = useParams();
-  const { fornecedor, getFornecedor, getFornecedores, getProdutos } = useContext(GeneralContext);
+  const { fornecedor, getFornecedor, getFornecedores, produtos, getProdutos } = useContext(GeneralContext);
+
+  const [ produtosFunc, setProdutosFunc ] = useState([]);
 
   useEffect(() => {
-    getProdutos();
     getFornecedores();
+    getProdutos();
     getFornecedor( cnpj_fornecedor );
   }, [])
+
+
+  useEffect(() => {
+    setProdutosFunc(produtos.map(produto => {
+      if (produto.cnpj_fornecedor_produto == fornecedor.cnpj_fornecedor) {
+        return produto
+      }
+    }))
+  }, [produtos])
 
 
   return (
@@ -25,7 +37,7 @@ const FornecedorDetalhe = () => {
       </div>
       <div className="row row-cols-1 row-cols-xl-2 p-0 mx-4">
         <div className="col gx-5 gy-5">
-          {/* <JumbotronProdutoHistorico produto={ produto } />  */}
+          <JumbotronListaProdutosFornecedor produtos={ produtosFunc } /> 
         </div>
         <div className="col gx-5 gy-5">
           {/* <JumbotronProdutoHistorico produto={ produto } />  */}
