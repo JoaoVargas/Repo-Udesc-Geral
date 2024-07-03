@@ -8,6 +8,9 @@ const JumbotronProdutoDetalhe = ( { produto }) => {
   const { fornecedor, getFornecedor, setCurrentPage } = useContext(GeneralContext);
 
   useEffect(() => {
+    if (produto == undefined) {
+      return
+    } 
     getFornecedor( produto.cnpj_fornecedor_produto );
   }, [produto])
 

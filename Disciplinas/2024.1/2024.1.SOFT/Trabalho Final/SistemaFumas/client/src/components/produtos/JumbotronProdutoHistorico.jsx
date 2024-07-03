@@ -21,7 +21,18 @@ const CustomTooltip = ({ active, payload, label }) => {
 const JumbotronProdutoHistorico = ( { produto }) => {
   const { historico, getHistorico } = useContext(GeneralContext);
 
+
   useEffect(() => {
+    if (produto == undefined) {
+      return
+    } 
+    getHistorico( produto.id_produto );
+  }, []);
+
+  useEffect(() => {
+    if (produto == undefined) {
+      return
+    } 
     getHistorico( produto.id_produto );
   }, [produto]);
 
@@ -32,20 +43,27 @@ const JumbotronProdutoHistorico = ( { produto }) => {
           Historico de Preços 
         </h1>
         <div>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart 
-            data={historico}
-            margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
-              <XAxis dataKey="data_preco"/>
-              <YAxis dataKey="preco_produto_preco"/>
-              <CartesianGrid stroke="#ADB1B5" strokeDasharray="5 5"/>
-              <Line 
-              type="monotone" 
-              dataKey="preco_produto_preco" 
-              stroke="#0E6DFB" />
-              <Tooltip content={<CustomTooltip />}/>
-            </LineChart>
-          </ResponsiveContainer>
+          {
+            produto == undefined || historico == undefined || historico.lenght == 0
+            ?
+              ""
+            :
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart 
+                data={historico}
+                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}>
+                  <XAxis dataKey="data_preco"/>
+                  <YAxis dataKey="preco_produto_preco"/>
+                  <CartesianGrid stroke="#ADB1B5" strokeDasharray="5 5"/>
+                  <Line 
+                  type="monotone" 
+                  dataKey="preco_produto_preco" 
+                  stroke="#0E6DFB" />
+                  <Tooltip content={<CustomTooltip />}/>
+                </LineChart>
+              </ResponsiveContainer>
+          }
+          
           
         </div>
       </div>

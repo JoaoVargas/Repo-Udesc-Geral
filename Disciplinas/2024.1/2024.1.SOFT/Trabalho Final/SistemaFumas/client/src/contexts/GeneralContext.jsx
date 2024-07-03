@@ -204,7 +204,7 @@ export const GeneralContextProvider = (props) => {
   }
 
   const deleteProduto = async (id_produto) => {
-    console.log(id_produto);
+    // console.log(id_produto);
 
     try {
       const response = await fetch(`http://localhost:3000/produtos/${id_produto}`, {
@@ -253,6 +253,173 @@ export const GeneralContextProvider = (props) => {
     }
   }
 
+  // ESTOQUE
+  const [ estoque, setEstoque ] = useState({});
+  const [ estoqueAll, setEstoqueAll ] = useState();
+  const [ estoques, setEstoques ] = useState([]);
+  const [ numBaixasMes, setNumBaixasMes ] = useState(0);
+  const [ numEntradasMes, setNumEntradasMes ] = useState(0);
+
+  const getEstoque = async (id_produto) => {
+    try {
+      // console.log(id_produto, "getEstoque");
+      const response = await fetch(`http://localhost:3000/estoque/${id_produto}`);
+
+      if (!response.ok) {
+        const jsonData = await response.json();
+        toast.error(jsonData.message);
+        return;
+      }
+
+      const jsonData = await response.json();
+
+      setEstoque(await jsonData);
+      // console.log(estoque, "estoque ");
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const getEstoqueAll = async () => {
+    try {
+      // console.log(id_produto, "getEstoque");
+      const response = await fetch(`http://localhost:3000/estoque/`);
+
+      if (!response.ok) {
+        const jsonData = await response.json();
+        toast.error(jsonData.message);
+        return;
+      }
+
+      const jsonData = await response.json();
+
+      setEstoqueAll(await jsonData);
+      // console.log(estoque, "estoque ");    
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const getEstoques = async (id_produto) => {
+    try {
+      const response = await fetch(`http://localhost:3000/estoques/${id_produto}`);
+
+      if (!response.ok) {
+        const jsonData = await response.json();
+        toast.error(jsonData.message);
+        return;
+      }
+
+      const jsonData = await response.json();
+
+      console.log(jsonData);
+
+      setEstoques(await jsonData.map((item) => {
+        item.data_modificacao = new Date(item.data_modificacao)
+          .toLocaleString('pt-BR', {
+            dateStyle: 'short',
+            timeStyle: 'medium',
+          });
+        return item
+      }));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const getNumBaixasMes = () => {
+    function converterStringParaData(dataString) {
+      const partes = dataString.split(/[\/, :]+/); // Divide a string em partes
+      const dia = partes[0];
+      const mes = partes[1] - 1; // Os meses em JavaScript vão de 0 a 11
+      const ano = partes[2];
+      const hora = partes[3];
+      const minuto = partes[4];
+      return new Date(ano, mes, dia, hora, minuto);
+    }
+
+    function calcularDiminuiçãoTotalNoMesAnterior(historico) {
+      const dataAtual = new Date();
+      const mesAtual = dataAtual.getMonth();
+      const anoAtual = dataAtual.getFullYear();
+      const mesAnterior = mesAtual === 0 ? 11 : mesAtual - 1; // Caso o mês atual seja janeiro (0), o mês anterior é dezembro (11)
+      const anoMesAnterior = mesAtual === 0 ? anoAtual - 1 : anoAtual;
+
+      // Filtra o histórico para obter apenas as entradas do mês anterior
+      const historicoMesAnterior = historico.filter(entry => {
+        const data = converterStringParaData(entry.data_modificacao);
+        return data.getMonth() === mesAnterior && data.getFullYear() === anoMesAnterior;
+      });
+
+      // Calcula a diminuição total do estoque no mês anterior
+      let diminuicaoTotal = 0;
+      for (let i = 0; i < historicoMesAnterior.length - 1; i++) {
+        const estoqueAtual = historicoMesAnterior[i].quantidade_estoque;
+        const estoqueSeguinte = historicoMesAnterior[i + 1].quantidade_estoque;
+        if (estoqueSeguinte < estoqueAtual) {
+          diminuicaoTotal += (estoqueAtual - estoqueSeguinte);
+        }
+      }
+
+      return diminuicaoTotal;
+    }
+
+    setNumBaixasMes(calcularDiminuiçãoTotalNoMesAnterior(estoques));
+  }
+
+  const getEntradasMes = () => {
+    function converterStringParaData(dataString) {
+      const partes = dataString.split(/[\/, :]+/); // Divide a string em partes
+      const dia = partes[0];
+      const mes = partes[1] - 1; // Os meses em JavaScript vão de 0 a 11
+      const ano = partes[2];
+      const hora = partes[3];
+      const minuto = partes[4];
+      return new Date(ano, mes, dia, hora, minuto);
+    }
+
+    function calcularAumentoTotalNoMesAtual(historico) {
+      const dataAtual = new Date();
+      const mesAtual = dataAtual.getMonth();
+      const anoAtual = dataAtual.getFullYear();
+
+      // Ordena o histórico pela data
+      historico.sort((a, b) => {
+        const dataA = converterStringParaData(a.data_modificacao);
+        const dataB = converterStringParaData(b.data_modificacao);
+        return dataA - dataB;
+      });
+
+      let ultimoEstoqueMesAnterior = null;
+      let totalAumento = 0;
+      
+      // Itera sobre o histórico ordenado
+      for (let i = 0; i < historico.length; i++) {
+        const entry = historico[i];
+        const data = converterStringParaData(entry.data_modificacao);
+        const mes = data.getMonth();
+        const ano = data.getFullYear();
+        
+        if (ano === anoAtual && mes === mesAtual) {
+          if (ultimoEstoqueMesAnterior !== null) {
+            const aumento = entry.quantidade_estoque - ultimoEstoqueMesAnterior;
+            if (aumento > 0) {
+              totalAumento += aumento;
+            }
+          }
+          ultimoEstoqueMesAnterior = entry.quantidade_estoque;
+        } else if (ano < anoAtual || (ano === anoAtual && mes < mesAtual)) {
+          ultimoEstoqueMesAnterior = entry.quantidade_estoque;
+        }
+      }
+
+      return totalAumento;
+    }
+
+
+    setNumEntradasMes(calcularAumentoTotalNoMesAtual(estoques));
+  }
+
   return (
     <GeneralContext.Provider
       value={{
@@ -261,7 +428,12 @@ export const GeneralContextProvider = (props) => {
         fornecedores, inputFornecedor, getFornecedores, deleteFornecedor, editFornecedor,
         produto, getProduto,
         produtos, inputProduto, getProdutos, editProduto, deleteProduto,
-        historico, getHistorico
+        historico, getHistorico,
+        estoque, getEstoque,
+        estoques, getEstoques,
+        estoqueAll, getEstoqueAll,
+        numBaixasMes, getNumBaixasMes,
+        numEntradasMes, getEntradasMes
       }}
     >
       {props.children}

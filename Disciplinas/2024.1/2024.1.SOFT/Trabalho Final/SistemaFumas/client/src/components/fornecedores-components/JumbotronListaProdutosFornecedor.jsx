@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { GeneralContext } from "../../contexts/GeneralContext";
-import { useNavigate } from "react-router-dom";
 import ListProdutosRow from "../produtos/ListProdutosRow";
 import ModalProdutoEdit from "../produtos/ModalProdutoEdit";
 import ModalProdutoDelete from "../produtos/ModalProdutoDelete";
 
 
 const JumbotronListaProdutosFornecedor = ( { produtos }) => {
-  const navigate = useNavigate();
-  const {  } = useContext(GeneralContext);
+
+  // useEffect(() => {
+  //   console.log(produtos, "listPro");
+  // }, [produtos])
 
   return (
     <div className="p-5 bg-body-tertiary rounded-3">
@@ -35,7 +36,7 @@ const JumbotronListaProdutosFornecedor = ( { produtos }) => {
             </thead>
             <tbody>
               { 
-                produtos == undefined
+                produtos == undefined || produtos.includes(undefined)
                 ?
                   <tr>
                     <th colSpan="9" scope="row" className="text-center">
@@ -62,7 +63,7 @@ const JumbotronListaProdutosFornecedor = ( { produtos }) => {
         </div>
 
         { 
-          produtos == undefined
+          produtos == undefined || produtos.includes(undefined)
           ?
             ""
           :
@@ -78,7 +79,7 @@ const JumbotronListaProdutosFornecedor = ( { produtos }) => {
           }
 
         {
-          produtos == undefined
+          produtos == undefined || produtos.includes(undefined)
           ?
             ""
           : 

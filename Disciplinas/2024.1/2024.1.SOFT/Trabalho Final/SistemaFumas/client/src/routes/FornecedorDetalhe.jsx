@@ -21,11 +21,18 @@ const FornecedorDetalhe = () => {
 
 
   useEffect(() => {
-    setProdutosFunc(produtos.map(produto => {
-      if (produto.cnpj_fornecedor_produto == fornecedor.cnpj_fornecedor) {
-        return produto
-      }
-    }))
+    if (produtos == undefined || produtos.includes(undefined)) {
+      return
+    } 
+    
+    let produtosAux = [];
+
+    produtos.map(produto => {
+    if (produto.cnpj_fornecedor_produto == fornecedor.cnpj_fornecedor) {
+      produtosAux.push(produto);
+    }})
+
+    setProdutosFunc(produtosAux);
   }, [produtos])
 
 

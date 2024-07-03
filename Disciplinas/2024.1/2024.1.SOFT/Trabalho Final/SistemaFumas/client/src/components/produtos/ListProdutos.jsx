@@ -48,44 +48,58 @@ const ListProdutos = () => {
           </thead>
           <tbody>
             { 
-            produtos.length == 0 
-              ? 
-                <tr>
-                  <th colSpan="9" scope="row" className="text-center">Não há produtos cadastrados</th>
-                </tr>
-              : 
-                produtos.map(produto => (
-                  <ListProdutosRow 
-                  produto={produto} 
-                  key={produto.id_produto}/>
-                ))
+            produtos == undefined || produtos[0] == undefined
+            ?
+              <tr>
+                <th colSpan="9" scope="row" className="text-center">Não há produtos cadastrados</th>
+              </tr>
+            :
+              produtos.length == 0 
+                ? 
+                  <tr>
+                    <th colSpan="9" scope="row" className="text-center">Não há produtos cadastrados</th>
+                  </tr>
+                : 
+                  produtos.map(produto => (
+                    <ListProdutosRow 
+                    produto={produto} 
+                    key={produto.id_produto}/>
+                  ))
             }
           </tbody>
         </table>
       </div>
 
       {
-        produtos.length == 0 
+        produtos == undefined || produtos[0] == undefined
         ?
           <div></div>
         :
-          produtos.map( produto => (
-            <ModalProdutoEdit 
-            key={produto.id_produto}
-            produto={produto}/>
-          ))
+          produtos.length == 0 
+          ?
+            <div></div>
+          :
+            produtos.map( produto => (
+              <ModalProdutoEdit 
+              key={produto.id_produto}
+              produto={produto}/>
+            ))
       }
 
       {
-        produtos.length == 0 
+        produtos == undefined || produtos[0] == undefined
         ?
           <div></div>
         :
-          produtos.map( produto => (
-            <ModalProdutoDelete 
-            key={produto.id_produto}
-            produto={produto}/>
-          ))
+          produtos.length == 0 
+          ?
+            <div></div>
+          :
+            produtos.map( produto => (
+              <ModalProdutoDelete 
+              key={produto.id_produto}
+              produto={produto}/>
+            ))
       }
 
     </Fragment>

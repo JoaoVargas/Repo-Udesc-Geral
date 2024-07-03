@@ -130,10 +130,86 @@ END;
 $$ LANGUAGE plpgsql;
 CREATE TRIGGER addHistoricoPrecoUpdate
 AFTER UPDATE OF preco_produto ON produtos
-FOR EACH ROW
-WHEN (OLD.preco_produto IS DISTINCT FROM NEW.preco_produto)
-EXECUTE FUNCTION addHistoricoPreco();
+  FOR EACH ROW WHEN (OLD.preco_produto IS DISTINCT FROM NEW.preco_produto)
+  EXECUTE FUNCTION addHistoricoPreco();
 CREATE TRIGGER addHistoricoPrecoInsert
-AFTER INSERT ON produtos
-FOR EACH ROW
-EXECUTE FUNCTION addHistoricoPreco();
+  AFTER INSERT ON produtos
+  FOR EACH ROW EXECUTE FUNCTION addHistoricoPreco();
+
+
+
+-- TABELA E TRIGGERS DE ESTOQUE
+-- criar trabela
+CREATE TABLE public.estoque_produtos (
+  id_produto_estoque integer NOT NULL,
+  estoque integer NOT NULL,
+  data_ultima_edicao timestamp without time zone NOT NULL DEFAULT now(),
+  CONSTRAINT id_produto_estoque_pk 
+    PRIMARY KEY (id_produto_estoque),
+  CONSTRAINT id_produto_estoque_fk 
+    FOREIGN KEY (id_produto_estoque)
+    REFERENCES public.produtos (id_produto) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID
+);
+
+-- Trigger adicionar item quando criar produto
+CREATE OR REPLACE FUNCTION insere_estoque_produto()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.estoque_produtos (id_produto_estoque, estoque, data_ultima_edicao)
+  VALUES (NEW.id_produto, 0, NOW());
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trigger_insere_estoque
+AFTER INSERT ON public.produtos 
+  FOR EACH ROW EXECUTE FUNCTION insere_estoque_produto();
+
+
+
+-- TABELA E TRIGGERS DE HISTORICO ESTOQUE
+-- criar trabela
+CREATE TABLE public.historico_estoque (
+  id_historico serial NOT NULL,
+  id_produto integer NOT NULL,
+  quantidade_estoque integer NOT NULL,
+  data_modificacao timestamp without time zone NOT NULL DEFAULT now(),
+  acao character varying(10) NOT NULL, -- "INSERCAO", "ATUALIZACAO" ou "DELECAO"
+  CONSTRAINT id_historico_pk 
+    PRIMARY KEY (id_historico),
+  CONSTRAINT id_produto_fk 
+    FOREIGN KEY (id_produto)
+    REFERENCES public.produtos (id_produto) MATCH SIMPLE
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+    NOT VALID
+);
+
+-- inserção no histórico
+CREATE OR REPLACE FUNCTION registrar_insercao_estoque()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.historico_estoque (id_produto, quantidade_estoque, data_modificacao, acao)
+  VALUES (NEW.id_produto_estoque, NEW.estoque, NOW(), 'INSERCAO');
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trigger_insercao_estoque
+AFTER INSERT ON public.estoque_produtos 
+  FOR EACH ROW EXECUTE FUNCTION registrar_insercao_estoque();
+
+-- atualizaçao no historico
+CREATE OR REPLACE FUNCTION registrar_atualizacao_estoque()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.historico_estoque (id_produto, quantidade_estoque, data_modificacao, acao)
+  VALUES (NEW.id_produto_estoque, NEW.estoque, NOW(), 'ATUALIZA');
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+CREATE TRIGGER trigger_atualizacao_estoque
+AFTER UPDATE ON public.estoque_produtos
+  FOR EACH ROW EXECUTE FUNCTION registrar_atualizacao_estoque();
+

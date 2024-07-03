@@ -218,7 +218,7 @@ app.delete("/produtos/:id_produto", async (req, res) => {
 // HISTORICO
 // Get a
 app.get("/historicos/:id_produto", async (req, res) => {
-  try {
+  try { 
     const { id_produto } = req.params;
 
     if (id_produto == "undefined") {
@@ -226,7 +226,7 @@ app.get("/historicos/:id_produto", async (req, res) => {
     }
 
     const aHistorico = await pool.query(
-      "SELECT * FROM historico_preco WHERE id_produto_preco = $1",
+      "SELECT * FROM historico_preco WHERE id_produto_preco = $1 ORDER BY data_preco ASC",
       [id_produto]
     );
 
@@ -236,5 +236,65 @@ app.get("/historicos/:id_produto", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+// ESTOQUE
+// Get a
+app.get("/estoque/:id_produto", async (req, res) => {
+  try {
+    const { id_produto } = req.params;
+
+    if (id_produto == "undefined") {
+      return
+    }
+
+    const aEstoque = await pool.query(
+      `SELECT * FROM estoque_produtos 
+      WHERE id_produto_estoque = $1`,
+      [id_produto]
+    );
+
+    res.json(aEstoque.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Get all
+app.get("/estoque/", async (req, res) => {
+  try {
+    const allEstoque = await pool.query(
+      `SELECT * FROM estoque_produtos`
+    );
+
+    res.json(allEstoque.rows);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Get history
+app.get("/estoques/:id_produto", async (req, res) => {
+  try {
+    const { id_produto } = req.params;
+
+    if (id_produto == "undefined") {
+      return
+    }
+
+    const allEstoque = await pool.query(
+      `SELECT * FROM historico_estoque 
+      WHERE id_produto = $1`,
+      [id_produto]
+    );
+
+    res.json(allEstoque.rows);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 module.exports = app;

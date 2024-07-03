@@ -1,9 +1,11 @@
 import { useContext, useEffect } from "react";
 import { GeneralContext } from "../../contexts/GeneralContext";
+import { useNavigate } from "react-router-dom";
 
 
 const JumbotronTotalFornecedores = () => {
-  const { fornecedores, getFornecedores } = useContext(GeneralContext);
+  const { setCurrentPage, fornecedores, getFornecedores } = useContext(GeneralContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getFornecedores();
@@ -16,7 +18,14 @@ const JumbotronTotalFornecedores = () => {
           Quantidade de Fornecedores
         </h1>
         <h1 className="text-center">
-          { fornecedores.length }
+          <a 
+          className="link cursor-pointer"
+          onClick={() => {
+            setCurrentPage(`/fornecedores/`);
+            navigate(`/fornecedores/`);
+          }}>
+            { fornecedores.length }
+          </a>
         </h1>
       </div>
     </div>

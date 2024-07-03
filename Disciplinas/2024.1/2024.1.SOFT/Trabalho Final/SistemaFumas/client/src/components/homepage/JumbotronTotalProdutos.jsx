@@ -1,9 +1,11 @@
 import { useContext, useEffect } from "react";
 import { GeneralContext } from "../../contexts/GeneralContext";
+import { useNavigate } from "react-router-dom";
 
 
 const JumbotronTotalProdutos = () => {
-  const { produtos, getProdutos } = useContext(GeneralContext);
+  const { setCurrentPage, produtos, getProdutos } = useContext(GeneralContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getProdutos();
@@ -16,7 +18,14 @@ const JumbotronTotalProdutos = () => {
           Quantidade de Produtos
         </h1>
         <h1 className="text-center">
+          <a 
+        className="link cursor-pointer"
+        onClick={() => {
+          setCurrentPage(`/produtos/`);
+          navigate(`/produtos/`);
+        }}>
           { produtos.length }
+        </a>
         </h1>
       </div>
     </div>
