@@ -2,134 +2,293 @@ const request = require('supertest');
 const app = require('../index');
 const pool = require('../db');
 
-// Mock para o pool.query e pool.end
-jest.mock('../db', () => ({
-  query: jest.fn(),
-  end: jest.fn()
-}));
+beforeAll(async () => {
+  // Executar migrações e seeds aqui, se necessário
+});
+
+afterAll(async () => {
+  await pool.query('DELETE FROM historico_preco ');
+  await pool.query('DELETE FROM historico_estoque');
+  await pool.query('DELETE FROM estoque_produtos');
+  await pool.query('ALTER SEQUENCE produtos_id_produto_seq RESTART WITH 1;'); 
+  await pool.query('ALTER SEQUENCE historico_estoque_id_historico_seq RESTART WITH 1;'); 
+  await pool.query('ALTER SEQUENCE historico_preco_id_historico_seq RESTART WITH 1;'); 
+  await pool.query('DELETE FROM produtos'); 
+  await pool.query('DELETE FROM fornecedores');
+  await pool.end(); // Fecha o pool de conexões
+});
+
 
 describe('API /produtos', () => {
-  afterAll(() => {
-    pool.end(); // Certifique-se de que o pool de conexões seja fechado
-  });
-
-  // // Teste para o endpoint de criação de fornecedor
-  // it('Deve criar um novo  e um produto para ele', async () => {
-  //   const newFornecedor = {
-  //     cnpj: '12345678901234',
-  //     nome: 'Fornecedor Teste',
-  //     cep: '12345678',
-  //     numero: '123'
-  //   };
-
-  //   pool.query.mockResolvedValueOnce({ rows: [newFornecedor] });
-
-  //   const response = await request(app)
-  //     .post('/fornecedores')
-  //     .send(newFornecedor);
-
-  //   expect(response.statusCode).toBe(200);
-  //   expect(response.body).toEqual(newFornecedor);
-  // });
-
-  it('Deve criar um novo  e um produto para ele', async () => {
-    const newProduto = {
-      cnpj: '12345678901234',
-      nome: 'Produto Teste',
-      marca: 'Marca Teste',
-      tipo: 'CX',
-      quantidade: '12',
-      preco: '12.3',
+  it('Criar novos fornecedores', async () => {
+    const sendFornecedor = {
+      cnpj: '12345678909876',
+      nome: 'Fornecedor Produtos 1',
+      cep: '12345678',
+      numero: '123'
+    };
+    const receiveFornecedor = {
+      cnpj_fornecedor: '12345678909876',
+      nome_fornecedor: 'Fornecedor Produtos 1',
+      cep_fornecedor: '12345678',
+      numero_fornecedor: '123'
     };
 
-    pool.query.mockResolvedValueOnce({ rows: [newProduto] });
+    const response = await request(app)
+      .post('/fornecedores')
+      .send(sendFornecedor)
+    expect(response.statusCode).toBe(200);
+    expect(response.body).toMatchObject(receiveFornecedor);
+
+    const sendFornecedor2 = {
+      cnpj: '12345678900000',
+      nome: 'Fornecedor Produtos 2',
+      cep: '12345678',
+      numero: '123'
+    };
+    const receiveFornecedor2 = {
+      cnpj_fornecedor: '12345678900000',
+      nome_fornecedor: 'Fornecedor Produtos 2',
+      cep_fornecedor: '12345678',
+      numero_fornecedor: '123'
+    };
+
+    const response2 = await request(app)
+      .post('/fornecedores')
+      .send(sendFornecedor2)
+    expect(response2.statusCode).toBe(200);
+    expect(response2.body).toMatchObject(receiveFornecedor2);
+  });
+
+
+
+  it('Criar um novo produto', async () => {
+    const sendProduto = { 
+      cnpjFornecedor: '12345678909876', 
+      nome: 'Produto 1', 
+      marca: 'Marca Produto 1', 
+      tipoUnidade: 'CX',
+      quantidade: 5,
+      preco: 10.50 
+      };
+    const receiveProduto = {
+      cnpj_fornecedor_produto: '12345678909876', 
+      nome_produto: 'Produto 1', 
+      marca_produto: 'Marca Produto 1', 
+      tipo_unidade_produto: 'CX',
+      quantidade_unidades_produto: 5,
+      preco_produto: 10.5 
+    };
 
     const response = await request(app)
       .post('/produtos')
-      .send(newProduto);
-
+      .send(sendProduto)
     expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual(newProduto);
+    expect(response.body).toMatchObject(receiveProduto);
   });
 
-  // Teste para obter todos os fornecedores
-  it('Deve retornar todos os fornecedores', async () => {
-    const fornecedores = [
+
+
+  it('Criar um novo produto, cnpj do fornecedor errado', async () => {
+    const sendProduto = { 
+      cnpjFornecedor: '00000000000000', 
+      nome: 'Produto 1', 
+      marca: 'Marca Produto 1', 
+      tipoUnidade: 'CX',
+      quantidade: 5,
+      preco: 10.50 
+      };
+
+    const response = await request(app)
+      .post('/produtos')
+      .send(sendProduto)
+    expect(response.statusCode).toBe(500);
+    expect(response.body.message).toBe(`insert or update on table "produtos" violates foreign key constraint "cnpj_fornecedor_produto_fkey"`);
+  });
+
+
+
+  it('Criar um novo produto, cnpj do fornecedor nulo', async () => {
+    const sendProduto = { 
+      cnpjFornecedor: '', 
+      nome: 'Produto 1', 
+      marca: 'Marca Produto 1', 
+      tipoUnidade: 'CX',
+      quantidade: 5,
+      preco: 10.50 
+      };
+
+    const response = await request(app)
+      .post('/produtos')
+      .send(sendProduto)
+    expect(response.statusCode).toBe(500);
+    expect(response.body.message).toBe(`insert or update on table "produtos" violates foreign key constraint "cnpj_fornecedor_produto_fkey"`);
+  });
+
+
+
+  it('Obter todos os produtos', async () => {
+    const sendProduto2 = { 
+      cnpjFornecedor: '12345678900000', 
+      nome: 'Produto 2', 
+      marca: 'Marca Produto 2', 
+      tipoUnidade: 'CX',
+      quantidade: 5,
+      preco: 10.50 
+      };
+    const receiveProdutos = [
       {
-        cnpj: '12345678901234',
-        nome: 'Fornecedor Teste 1',
-        cep: '12345678',
-        numero: '123'
+        cnpj_fornecedor_produto: '12345678909876', 
+        nome_produto: 'Produto 1', 
+        marca_produto: 'Marca Produto 1', 
+        tipo_unidade_produto: 'CX',
+        quantidade_unidades_produto: 5,
+        preco_produto: 10.5 
       },
       {
-        cnpj: '23456789012345',
-        nome: 'Fornecedor Teste 2',
-        cep: '87654321',
-        numero: '456'
+        cnpj_fornecedor_produto: '12345678900000', 
+        nome_produto: 'Produto 2', 
+        marca_produto: 'Marca Produto 2', 
+        tipo_unidade_produto: 'CX',
+        quantidade_unidades_produto: 5,
+        preco_produto: 10.5 
       }
     ];
 
-    pool.query.mockResolvedValueOnce({ rows: fornecedores });
-
     const response = await request(app)
-      .get('/fornecedores');
-
+      .post('/produtos')
+      .send(sendProduto2)
     expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual(fornecedores);
+    expect(response.body).toMatchObject(receiveProdutos[1]);
+
+    const response2 = await request(app)
+      .get('/produtos')
+    expect(response2.statusCode).toBe(200);
+    expect(response2.body).toMatchObject(receiveProdutos);
   });
 
-  // Teste para obter um fornecedor pelo CNPJ
-  it('Deve retornar um fornecedor pelo CNPJ', async () => {
-    const fornecedor = {
-      cnpj: '12345678901234',
-      nome: 'Fornecedor Teste',
-      cep: '12345678',
-      numero: '123'
+
+
+  it('Obter um produto, pelo id', async () => {
+    const sendProduto3 = { 
+      cnpjFornecedor: '12345678900000', 
+      nome: 'Produto 3', 
+      marca: 'Marca Produto 3', 
+      tipoUnidade: 'CX',
+      quantidade: 5,
+      preco: 10.50 
+    };
+    const receiveProduto3 = { 
+      cnpj_fornecedor_produto: '12345678900000', 
+      nome_produto: 'Produto 3', 
+      marca_produto: 'Marca Produto 3', 
+      tipo_unidade_produto: 'CX',
+      quantidade_unidades_produto: 5,
+      preco_produto: 10.50 
     };
 
-    pool.query.mockResolvedValueOnce({ rows: [fornecedor] });
-
     const response = await request(app)
-      .get('/fornecedores/12345678901234');
-
+      .post('/produtos')
+      .send(sendProduto3)
     expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual(fornecedor);
+    expect(response.body).toMatchObject(receiveProduto3);
+
+    const response2 = await request(app)
+      .get(`/produtos/${response.body.id_produto}`)
+    expect(response2.statusCode).toBe(200);
+    expect(response2.body).toMatchObject(receiveProduto3);
   });
 
-  // Teste para atualizar um fornecedor
-  it('Deve atualizar um fornecedor', async () => {
-    const updatedFornecedor = {
-      cnpj: '12345678901234',
-      nome: 'Fornecedor Atualizado',
-      cep: '87654321',
-      numero: '321'
+
+
+  it('Atualizar um produto pelo id', async () => {
+    const sendProduto4 = { 
+      cnpjFornecedor: '12345678900000', 
+      nome: 'Produto 4', 
+      marca: 'Marca Produto 4', 
+      tipoUnidade: 'CX',
+      quantidade: 5,
+      preco: 10.50 
+    };
+    const receiveProduto4 = { 
+      cnpj_fornecedor_produto: '12345678900000', 
+      nome_produto: 'Produto 4', 
+      marca_produto: 'Marca Produto 4', 
+      tipo_unidade_produto: 'CX',
+      quantidade_unidades_produto: 5,
+      preco_produto: 10.50 
     };
 
-    pool.query.mockResolvedValueOnce({ rows: [updatedFornecedor] });
-
     const response = await request(app)
-      .put('/fornecedores/12345678901234')
-      .send(updatedFornecedor);
-
+      .post('/produtos')
+      .send(sendProduto4)
     expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual(updatedFornecedor);
+    expect(response.body).toMatchObject(receiveProduto4);
+
+    const produto4Updated = { 
+      cnpj_fornecedor_produto: '12345678900000', 
+      nome_produto: 'Produto 4 Atualizado', 
+      marca_produto: 'Marca Produto 4 Atualizado', 
+      tipo_unidade_produto: 'CX',
+      quantidade_unidades_produto: 5,
+      preco_produto: 10.50 
+    };
+
+    const response2 = await request(app)
+      .put(`/produtos/${response.body.id_produto}`)
+      .send(produto4Updated)
+    expect(response2.statusCode).toBe(200);
+    expect(response2.body).toMatchObject(produto4Updated);
+
+    const response3 = await request(app)
+      .get(`/produtos/${response.body.id_produto}`)
+    expect(response3.statusCode).toBe(200);
+    expect(response3.body).toMatchObject(produto4Updated);
   });
 
-  // Teste para deletar um fornecedor
-  it('Deve deletar um fornecedor', async () => {
-    const fornecedor = {
-      cnpj: '12345678901234',
-      nome: 'Fornecedor Teste',
-      cep: '12345678',
-      numero: '123'
+
+
+  it('Deletar um produto pelo id', async () => {
+    const sendProduto5 = { 
+      cnpjFornecedor: '12345678900000', 
+      nome: 'Produto 4', 
+      marca: 'Marca Produto 4', 
+      tipoUnidade: 'CX',
+      quantidade: 5,
+      preco: 10.50 
+    };
+    const receiveProduto5 = { 
+      cnpj_fornecedor_produto: '12345678900000', 
+      nome_produto: 'Produto 4', 
+      marca_produto: 'Marca Produto 4', 
+      tipo_unidade_produto: 'CX',
+      quantidade_unidades_produto: 5,
+      preco_produto: 10.50 
     };
 
-    pool.query.mockResolvedValueOnce({ rows: [fornecedor] });
-
     const response = await request(app)
-      .delete('/fornecedores/12345678901234');
-
+      .post('/produtos')
+      .send(sendProduto5)
     expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual([fornecedor]);
+    expect(response.body).toMatchObject(receiveProduto5);
+
+
+    const response2 = await request(app)
+      .get(`/produtos/${response.body.id_produto}`)
+    expect(response2.statusCode).toBe(200);
+    expect(response2.body).toMatchObject(receiveProduto5);
+
+    const idDelete = response.body.id_produto;
+
+    const response3 = await request(app)
+      .delete(`/produtos/${idDelete}`)
+    expect(response3.statusCode).toBe(200);
+    expect(response3.body).toMatchObject([receiveProduto5]);
+
+
+    const response4 = await request(app)
+      .get(`/produtos/${idDelete}`)
+    expect(response4.statusCode).toBe(200);
+    expect(response4.body).toBe("");
   });
 });

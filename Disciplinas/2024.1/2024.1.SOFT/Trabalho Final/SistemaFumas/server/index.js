@@ -10,15 +10,11 @@ app.use(express.json());
 // Create
 app.post("/fornecedores", async (req, res) => {
   try {
-    console.log(req.body);
-
     const { cnpj, nome, cep, numero } = req.body;
     const newFornecedor = await pool.query(
       "INSERT INTO fornecedores (cnpj_fornecedor, nome_fornecedor, cep_fornecedor, numero_fornecedor) VALUES ($1, $2, $3, $4) RETURNING *",
       [cnpj, nome, cep, numero]
     );
-
-    // console.log("fornecedor", newFornecedor);
 
     res.json(newFornecedor.rows[0]);
   } catch (error) {
@@ -254,6 +250,31 @@ app.get("/estoque/:id_produto", async (req, res) => {
       `SELECT * FROM estoque_produtos 
       WHERE id_produto_estoque = $1`,
       [id_produto]
+    );
+
+    res.json(aEstoque.rows[0]);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Update a
+app.put("/estoque/:id_produto_estoque", async (req, res) => {
+  try {
+    const { id_produto_estoque } = req.params;
+    const { estoque, 
+          } = req.body;
+
+    if (id_produto_estoque == "undefined") {
+      return
+    }
+
+    const aEstoque = await pool.query(
+      `UPDATE estoque_produtos 
+       SET estoque = $1
+       WHERE id_produto_estoque = $2 RETURNING *`,
+      [estoque, id_produto_estoque]
     );
 
     res.json(aEstoque.rows[0]);
