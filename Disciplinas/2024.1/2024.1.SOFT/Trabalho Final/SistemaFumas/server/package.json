@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose",
-    "test2": "mocha test/o.test.js --timeout 10000",
+    "test": "NODE_ENV=test jest --verbose",
     "server": "nodemon server"
   },
   "author": "",

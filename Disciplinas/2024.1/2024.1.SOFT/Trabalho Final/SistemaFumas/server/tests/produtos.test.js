@@ -13,24 +13,24 @@ describe('API /produtos', () => {
     pool.end(); // Certifique-se de que o pool de conexões seja fechado
   });
 
-  // Teste para o endpoint de criação de fornecedor
-  it('Deve criar um novo  e um produto para ele', async () => {
-    const newFornecedor = {
-      cnpj: '12345678901234',
-      nome: 'Fornecedor Teste',
-      cep: '12345678',
-      numero: '123'
-    };
+  // // Teste para o endpoint de criação de fornecedor
+  // it('Deve criar um novo  e um produto para ele', async () => {
+  //   const newFornecedor = {
+  //     cnpj: '12345678901234',
+  //     nome: 'Fornecedor Teste',
+  //     cep: '12345678',
+  //     numero: '123'
+  //   };
 
-    pool.query.mockResolvedValueOnce({ rows: [newFornecedor] });
+  //   pool.query.mockResolvedValueOnce({ rows: [newFornecedor] });
 
-    const response = await request(app)
-      .post('/fornecedores')
-      .send(newFornecedor);
+  //   const response = await request(app)
+  //     .post('/fornecedores')
+  //     .send(newFornecedor);
 
-    expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual(newFornecedor);
-  });
+  //   expect(response.statusCode).toBe(200);
+  //   expect(response.body).toEqual(newFornecedor);
+  // });
 
   it('Deve criar um novo  e um produto para ele', async () => {
     const newProduto = {

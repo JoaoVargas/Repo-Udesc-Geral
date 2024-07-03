@@ -1,4 +1,3 @@
-const dotenv = require("dotenv").config();
 const cors = require("cors");
 const express = require("express");
 const app = express();
@@ -11,11 +10,15 @@ app.use(express.json());
 // Create
 app.post("/fornecedores", async (req, res) => {
   try {
+    console.log(req.body);
+
     const { cnpj, nome, cep, numero } = req.body;
     const newFornecedor = await pool.query(
       "INSERT INTO fornecedores (cnpj_fornecedor, nome_fornecedor, cep_fornecedor, numero_fornecedor) VALUES ($1, $2, $3, $4) RETURNING *",
       [cnpj, nome, cep, numero]
     );
+
+    // console.log("fornecedor", newFornecedor);
 
     res.json(newFornecedor.rows[0]);
   } catch (error) {
