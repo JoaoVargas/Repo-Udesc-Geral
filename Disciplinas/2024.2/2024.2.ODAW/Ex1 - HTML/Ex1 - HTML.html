@@ -1,0 +1,149 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Ex1 - HTML</title>
+        </head>
+        <body>
+            <style>
+                @keyframes animate {
+                    0% {
+                        transform: rotateX(-30deg) rotateY(0deg);
+                    }
+                    100% {
+                        transform: rotateX(-30deg) rotateY(360deg);
+                    }
+                }
+            </style>
+
+            <br id="topo">
+            <center><h1>Imagens e Links e Estilos</h1></center>
+            <br><br><br>
+
+            <h2><u>Imagens</u></h2>
+            <p>A seguir será <i>mostrado</i> como são <b>imagens</b></p>
+
+            <img src="https://64.media.tumblr.com/877d8baa059f4a1268ac8ac7d0a4656f/9fd1125e12ed7de2-b0/s500x750/3378c22f6ce8cd17b94e4ffc3bf905c4ed9e4b41.png" alt="Isso foi uma imagens">
+            <p>Isso foi uma imagem</p>
+
+            <img src="https://i.pinimg.com/originals/2d/92/3e/2d923e4f4e559bd981256811f8026d5c.gif" alt="Isso foi um gif">
+            <p>Isso foi um gif</p>
+
+            <hr>
+            <br><br>
+
+            <h2><u>Links</u></h2>
+            <p>A seguir será <i>mostrado</i> como são <b>links</b></p>
+
+            <a href="#topo">Link parao topo da pagina</a>
+            <br>
+            <a href="https://www.youtube.com/">Link para o youtube</a>
+            <br>
+            <a href="https://www.youtube.com/" target="_blank">Link para o youtube em nova pagina</a>
+
+            <hr>
+            <br><br>
+
+            <h2><u>Estilos</u></h2>
+            <p>A seguir será <i>mostrado</i> como são <b>estilos</b></p>
+
+            <div style="height: 300px; width: 300px; background-color: cyan;">
+                Bloco de 300px x 300px de fundo ciano
+            </div>
+
+            <br>
+
+            <div style="
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 300px;
+                width: 300px;
+                background-color: var(--dark-green);
+                overflow: hidden;
+                color: white;
+
+
+                --dark-green: rgb(2, 35, 51);
+                --medium-green: #1e3b2d;
+                --light-green: #00ff84;
+                ">
+                <div style="
+                position: absolute;
+                top: 10%;
+                width: 200px;
+                height: 200px;
+                transform-style: preserve-3d;
+                animation: animate 4s linear infinite;
+                ">
+                    <div style="
+                        position: absolute; 
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: var(--light-green);
+                        transform: rotateX(90deg) translateZ(-150px);
+                        filter: blur(20px);
+                        box-shadow: 0 0 500px var(--light-green);
+                    ">
+                    </div>
+                    <div style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(var(--medium-green), var(--light-green));
+                        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                        transform: rotateY(calc(90deg * 0)) translateZ(99px) rotateX(30deg);
+                        transform-origin: bottom;
+                    ">
+                    </div>
+                    <div style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(var(--medium-green), var(--light-green));
+                        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                        transform: rotateY(calc(90deg * 1)) translateZ(99px) rotateX(30deg);
+                        transform-origin: bottom;
+                    ">
+                    </div>
+                    <div style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(var(--medium-green), var(--light-green));
+                        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                        transform: rotateY(calc(90deg * 2)) translateZ(99px) rotateX(30deg);
+                        transform-origin: bottom;
+                    ">
+                    </div>
+                    <div style="
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(var(--medium-green), var(--light-green));
+                        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+                        transform: rotateY(calc(90deg * 3)) translateZ(99px) rotateX(30deg);
+                        transform-origin: bottom;
+                    ">
+                    </div>
+                </div>
+                <div style="
+                    position: absolute;
+                ">
+                    Animaçao feita com CSS
+                </div>
+            </div>
+        </body>
+        </html>
