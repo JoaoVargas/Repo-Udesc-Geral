@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ex2 - HTML2</title>
+  <link rel="stylesheet" href="Ex2.css">
+</head>
+<body>
+
+  <style>
+    :root {
+        --color-foreground: #3f4238;
+        --color-background: #faebdf;
+        --color-background-secondary: #d4c7b0;
+        --color-background-tertiary: #ddbea9;
+        --color-highlight: #a5a58d;
+        --color-highlight-darker: #8f8f7a;
+        --color-danger: #cb997e;
+        --color-danger-darker: #a27b66;
+
+        --base-border-radius: 0.5rem;;
+    }
+
+    body{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        color: var(--color-foreground);
+        background-color: var(--color-background);
+    }
+
+    .btn{
+        border: 0;
+        border-radius: var(--base-border-radius);
+        padding: 0.2rem 0.5rem;
+        background-color: var(--color-highlight);
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .btn:hover{
+        background-color: var(--color-highlight-darker);
+    }
+    .btn-danger{
+        background-color: var(--color-danger);
+    }
+    .btn-danger:hover{
+        background-color: var(--color-danger-darker);
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+
+        padding-right: 2rem;
+        padding-left: 2rem;
+
+        max-width: 100vw;
+        height: 2.5rem;
+        background-color: var(--color-background-secondary);
+    }
+    .header-logo {
+        align-self: center;
+
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-right: 2rem;
+    }
+    .header-itens {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        width: 100%;
+
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .header-item {
+        background-color: var(--color-highlight);
+        border-radius: var(--base-border-radius);
+        height: 100%;
+        padding: 0 1rem 0 1rem;
+        align-content: center;
+    }
+
+    .body {
+        width: 100%;
+        height: 80vh;
+    }
+
+    .footer {
+        display: flex;
+        width: 100%;
+        height: 14vh;
+        background-color: var(--color-background-secondary);
+    }
+
+    .modal {
+        position: fixed;
+        inset: 0 0 0 0;
+        margin: auto;
+        width: 50%;
+
+        border: 0;
+        border-radius: var(--base-border-radius);
+
+        background-color: var(--color-background-secondary);
+    }
+    .modal-header{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-weight: bold;
+        font-size:larger;
+
+        margin-bottom: 1rem;
+
+        border-bottom: 1px solid var(--color-highlight);
+
+    }
+    .modal-content{
+        margin-bottom: 1rem;
+    }
+    .modal-footer{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .form{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .form-item{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        margin-bottom: 0.5rem;
+    }
+    .form-item input {
+        width: 40vw;
+        background-color: var(--color-background);
+        border: 0;
+        margin-left: 0.5rem;
+    }
+      
+    .hero-section{
+        display: flex;
+        flex-direction: row;
+        height: 30rem;
+    }
+
+    .hero-section img{
+        width: 50vw;
+    }
+
+    .hero-section div{
+        width: 50vw;
+        text-align: center;
+        align-content: center;
+        border-bottom: 2px solid var(--color-background-secondary);
+    }
+
+    .block{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .subblock{
+        width: 50vw;
+        padding: 5rem;
+    }
+  </style>
+
+  <div class="header">
+    <div class="header-logo">
+      HotelZica
+    </div>
+    <div class="header-itens">
+      <div class="header-item">
+        Link 1
+      </div>
+      <div class="header-item">
+        Link 2
+      </div>
+      <div class="header-item">
+        Link 3
+      </div>
+      <div class="header-item">
+        Cadastro/Entrar
+      </div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="hero-section">
+      <img src="https://hotelariaweb.com/wp-content/uploads/2021/04/landscape-2016308_1280-1024x731.jpg" alt="Imagem hotel zica">
+      <div>
+        <center>
+          <h1><b>Seja bem vindo ao HotelZica</b></h1>
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam quis dictum nunc, a maximus urna. Suspendisse iaculis finibus tempus. Pellentesque blandit posuere lorem, eget tristique nulla consequat tempus. Curabitur aliquet quis elit a auctor. Sed magna dui, cursus ut leo aliquam, ullamcorper gravida est. Duis vitae eleifend risus. Duis volutpat ligula risus, id sollicitudin tortor dapibus eget. Nullam quis mi lectus. Praesent vehicula sem quam, id tincidunt eros fermentum nec. Aliquam libero ipsum, pretium sit amet urna at, facilisis efficitur justo. Vivamus ornare aliquam purus, id vehicula urna facilisis non. </p>
+        </center>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="subblock">
+        <h3>
+          <center>Motivos para pegar um AP <b>agora</b></center>
+        </h3>
+        <ul>
+          <li>Lorem ipsum</li>
+          <li>dolor sit amet</li>
+          <li>consectetur adipiscing elit</li>
+          <ul>
+            <li>Nulla malesuada</li>
+            <li>ac neque nec iaculis</li>
+            <li>Curabitur sit amet</li>
+          </ul>
+        </ul>
+        <ol>
+          <li>Duis volutpat</li>
+          <li>ligula risus</li>
+          <li>Vestibulum ullamcorper</li>
+        </ol>
+      </div>
+      <div class="subblock">
+        <h3><center>Tabela de preços</center></h3>
+        <center>
+          <table>
+            <tr>
+              <th>Quartos</th>
+              <th>Preço</th>
+            </tr>
+            <tr>
+              <td>Quarto 1</td>
+              <td>R$ 100,00</td>
+            </tr>
+            <tr>
+              <td>Quarto 2</td>
+              <td>R$ 1000,00</td>
+            </tr>
+            <tr>
+              <td>Quarto 3</td>
+              <td>R$ 120,00</td>
+            </tr>
+            <tr>
+              <td>Quarto 4</td>
+              <td>R$ 89,00</td>
+            </tr>
+          </table> 
+        </center>
+        
+      </div>
+    </div>
+  </div>
+  
+  <dialog open class="modal">
+    <div class="modal-header">
+      Cadastre-se
+    </div>
+    <div class="modal-content">
+      <form method="dialog" id="modal-form" class="form">
+        <div class="form-item">
+          <label for="nome">Nome: </label>
+          <input type="text" id="nome">
+        </div>
+        <div class="form-item">
+          <label for="email">Email: </label>
+          <input type="email" name="Email" id="email">
+        </div>
+        <div class="form-item">
+          <label for="data">Data: </label>
+          <input type="date" name="data" id="data">
+        </div>
+        <div class="form-item">
+          <label for="senha">Senha: </label>
+          <input type="password" name="" id="senha">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn" form="modal-form">Cadastrar</button>
+      <button class="btn btn-danger" form="modal-form">Cancelar</button>
+    </div>
+  </dialog>
+</body>
+</html>

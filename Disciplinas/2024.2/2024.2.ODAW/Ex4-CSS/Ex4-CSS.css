@@ -1,0 +1,120 @@
+:root {
+    --color-foreground: #3f4238;
+    --color-background: #fcf5ef;
+    --color-background-secondary: #d4c7b0;
+    --color-background-tertiary: #ddbea9;
+    --color-background-tertiary-lighter: #f3e5db;
+    --color-highlight: #a5a58d;
+    --color-highlight-lighter: #e4e4d4;
+    --color-highlight-darker: #8f8f7a;
+    --color-danger: #cb997e;
+    --color-danger-darker: #a27b66;
+
+    --base-border-radius: 0.5rem;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+}
+
+nav{
+    height: 3rem;
+    width: 100vw;
+    background-color: var(--color-background-secondary);
+}
+nav div.acess{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 1rem;
+    margin-right: 1rem;
+    margin-left: auto;
+
+    width: fit-content;
+    height: 100%;
+}
+nav div.title{
+    position: absolute;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    height: inherit;
+    width: 100vw;
+
+    pointer-events: none; 
+}
+nav div.title h2{
+    pointer-events: auto; 
+}
+nav div.title h2 a{
+    text-decoration: none;
+    color: var(--color-foreground);
+}
+
+header{
+    height: 30rem;
+    width: 100vw;
+    background-color: var(--color-background-tertiary-lighter);
+    display: flex;
+    flex-direction: row;
+}
+header img{
+    width: 50vw;
+}
+header div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    box-sizing: border-box;
+    width: 50vw;
+    padding: 2rem;
+}
+
+main {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+main .row{
+    display: flex;
+    flex-direction: row;
+}
+
+section {
+    margin: 2rem;
+    padding: 2rem;
+    height: fit-content;
+    width: 100%;
+    border-radius: var(--base-border-radius);
+    background-color: var(--color-highlight-lighter);
+}
+section div{
+    height: 100%;
+}
+section div h2{
+    margin: 0;
+}
+
+.back-top{
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+}
+.back-top a{
+    text-decoration: none;
+    color: var(--color-foreground);
+    font-weight: bold;
+}
