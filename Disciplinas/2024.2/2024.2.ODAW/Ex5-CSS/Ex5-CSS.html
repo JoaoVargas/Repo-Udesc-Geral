@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex5-CSS</title>
+    <link rel="stylesheet" type="text/css" href="./Ex5-CSS.css">
+  </head>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, b, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, picture, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 1em;
+      font: inherit;
+      vertical-align: baseline;
+    }
+
+    body{
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      line-height: calc(1em + 0.5rem);
+      -webkit-font-smoothing: antialiased;
+      color: var(--color-foreground);
+      background-color: var(--color-background);
+    }
+
+    h1{
+      font-size: 2em;
+      font-weight: bold;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    h2{
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-top: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+    h3{
+      font-size: 1.2em;
+      font-weight: bold;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    li{
+      margin-left: 1rem;
+    }
+  </style>
+  <body>
+    <nav class="navbar" id="top">
+      <div class="navbar-title">
+        <h2 style="pointer-events: auto;">
+          <a style="text-decoration: none; color: var(--color-foreground);" href="./Ex4-CSS.html" target="_blank" rel="noopener noreferrer">
+            Hotel
+          </a>
+        </h2>
+      </div>
+      <div class="navbar-acess">
+        <span>Entrar</span>
+        <span>Cadastrar</span>
+      </div>
+    </nav>
+    <header class="header">
+      <div class="header-left">
+        <picture>
+          <img style="width: 100%; height: 100%; overflow: hidden; object-fit: cover;" src="https://www.dicasdeviagem.com/wp-content/uploads/2023/08/piscina-hotel-tannenhof-em-joinville.jpg" alt="Imagem do hotel">
+        </picture>
+      </div>
+      <div class="header-right">
+        <h1>Seja bem vindo</h1>
+        <p>Com 168 apartamentos modernos e aconchegantes, o Hotel possui localização privilegiada: a apenas alguns minutos do Aeroporto Internacional de Cidade.</p>
+      </div>
+    </header>
+    <main class="main">
+      <div class="main-row-blocks">
+        <section class="main-row-blocks-block">
+          <div>
+            <h2 style="margin-top: 0;">Benefícios</h2>
+            <ul>
+              <li>Janelas antiruído e piso antialérgico</li>
+              <li>Estacionamento</li>
+              <li>Sauna e spa com área exclusiva</li>
+              <li>Piscina adulta e infantil</li>
+              <li>Gastronomia completa em 6 espaços diferentes</li>
+              <li>Mini market 24h por dia</li>
+              <li>Melhor infraestrutura da região</li>
+              <li>Espaço fitness</li>
+              <li>Ambientes sofisticados com alto padrão de limpeza</li>
+              <li>Rooftop com vista panorâmica</li>
+            </ul>
+          </div>
+        </section>
+        <section class="main-row-blocks-block">
+          <div>
+            <h2 style="margin-top: 0;">Pacotes e Promoções</h2>
+            <ul>
+              <li>Pacote Romântico e Núpicias</li>
+              <li>Wedding Day</li>
+              <li>Day Use Resort</li>
+              <li>Day Spa Relaxante</li>
+            </ul>
+          </div>
+        </section>
+      </div>
+      <div class="main-row-carrosel" aria-label="Galeria">
+        <div class="main-row-carrosel-slides">
+          <div id="slide-1" class="main-row-carrosel-slide">
+            <picture>
+              <img src="https://images.bubbleup.com/width1920/quality35/mville2017/1-brand/1-margaritaville.com/gallery-media/220803-compasshotel-medford-pool-73868-1677873697-78625-1694019828.jpg" alt="Imagem do hotel">
+            </picture>
+          </div>
+          <div id="slide-2" class="main-row-carrosel-slide">
+            <picture>
+              <img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg" alt="Imagem do hotel">
+            </picture>
+          </div>
+          <div id="slide-3" class="main-row-carrosel-slide">
+            <picture>
+              <img src="https://www.hilton.com/im/en/CZMPCHH/7888781/czmpc-pool-3.jpg?impolicy=crop&cw=5000&ch=3203&gravity=NorthWest&xposition=0&yposition=64&rw=1280&rh=820" alt="Imagem do hotel">
+            </picture>
+          </div>
+        </div>
+        <div class="main-row-carrosel-slider">
+          <a href="#slide-1">
+            <svg height="1rem" width="1rem" xmlns="http://www.w3.org/2000/svg">
+              <circle r="0.45rem" cx="0.5rem" cy="0.5rem" fill="var(--color-foreground)" />
+            </svg> 
+          </a>
+          <a href="#slide-2">
+            <svg height="1rem" width="1rem" xmlns="http://www.w3.org/2000/svg">
+              <circle r="0.45rem" cx="0.5rem" cy="0.5rem" fill="var(--color-foreground)" />
+            </svg> 
+          </a>
+          <a href="#slide-3">
+            <svg height="1rem" width="1rem" xmlns="http://www.w3.org/2000/svg">
+              <circle r="0.45rem" cx="0.5rem" cy="0.5rem" fill="var(--color-foreground)" />
+            </svg> 
+          </a>
+        </div>
+      </div>
+    </main>
+    <div class="back-top">
+      <a 
+      href="#top" 
+      style="
+        text-decoration: none; 
+        color: var(--color-foreground); 
+        font-weight: bold;
+      ">
+        Voltar ao topo
+      </a>
+    </div>
+  </body>
+</html>
