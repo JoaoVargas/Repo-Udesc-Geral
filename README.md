@@ -24,6 +24,40 @@
 </h2>
 
 <h3>
+  2024.2
+</h3>
+<ul>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.2/2024.2.ANN">
+      ANN - Análise Numérica
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.2/2024.2.BAN2">
+      BAN2 - Banco de Dados 2
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.2/2024.2.ODAW">
+      ODAW - Optativa em Desenvolvimento de Aplicações Web
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.2/2024.2.OSRC">
+      OSRC - Optativa em Segurança de Redes de Computadores
+      </a>
+    </h4>
+  </li>
+</ul>
+
+<h3>
   2024.1
 </h3>
 <ul>
@@ -180,6 +214,13 @@
   </li>
   <li>
     <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.2/2024.2.ANN">
+      ANN - 2024/2 - Análise Numérica
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
       <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.AOC">
       AOC - 2024/1 - Arquitetura e Organização de Computadores
       </a>
@@ -196,6 +237,13 @@
     <h4>
       <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.BAN2">
       BAN2 - 2024/1 - Banco de Dados 2
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.2/2024.2.BAN2">
+      BAN2 - 2024/2 - Banco de Dados 2
       </a>
     </h4>
   </li>
@@ -243,8 +291,22 @@
   </li>
   <li>
     <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.2/2024.2.ODAW">
+      ODAW - 2024/2 - Optativa em Desenvolvimento de Aplicações Web
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
       <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.1/2024.1.OGMR">
       OGMR - 2024/1 - Optativa em Gerência e Mobilidade de Redes
+      </a>
+    </h4>
+  </li>
+  <li>
+    <h4>
+      <a href="https://github.com/JoaoVargas/Repo-Udesc-Geral/tree/main/Disciplinas/2024.2/2024.2.OSRC">
+      OSRC - 2024/2 - Optativa em Segurança de Redes de Computadores
       </a>
     </h4>
   </li>
