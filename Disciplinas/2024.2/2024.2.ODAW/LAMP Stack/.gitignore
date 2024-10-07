@@ -1,0 +1,17 @@
+/.env
+/.vscode
+/config/*
+/data/*
+/logs/*
+/www/**
+.DS_Store
+/buildtest
+/logs
+/config
+/www
+/data
+/bin
+/todo.md
+/readme
+/LICENSE
+/dev_build_container.sh
