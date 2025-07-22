@@ -1,0 +1,106 @@
+
+a-exemplo.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	48 83 ec 20          	sub    $0x20,%rsp
+   8:	89 7d ec             	mov    %edi,-0x14(%rbp)
+   b:	48 89 75 e0          	mov    %rsi,-0x20(%rbp)
+   f:	48 c7 45 f8 00 00 00 	movq   $0x0,-0x8(%rbp)
+  16:	00 
+  17:	eb 14                	jmp    2d <main+0x2d>
+  19:	bf 00 00 00 00       	mov    $0x0,%edi
+  1e:	b8 00 00 00 00       	mov    $0x0,%eax
+  23:	e8 00 00 00 00       	call   28 <main+0x28>
+  28:	48 83 45 f8 01       	addq   $0x1,-0x8(%rbp)
+  2d:	48 83 7d f8 09       	cmpq   $0x9,-0x8(%rbp)
+  32:	76 e5                	jbe    19 <main+0x19>
+  34:	b8 00 00 00 00       	mov    $0x0,%eax
+  39:	c9                   	leave
+  3a:	c3                   	ret
+
+Disassembly of section .rodata:
+
+0000000000000000 <.rodata>:
+   0:	41 6c                	rex.B insb (%dx),%es:(%rdi)
+   2:	6f                   	outsl  %ds:(%rsi),(%dx)
+	...
+
+Disassembly of section .comment:
+
+0000000000000000 <.comment>:
+   0:	00 47 43             	add    %al,0x43(%rdi)
+   3:	43 3a 20             	rex.XB cmp (%r8),%spl
+   6:	28 47 4e             	sub    %al,0x4e(%rdi)
+   9:	55                   	push   %rbp
+   a:	29 20                	sub    %esp,(%rax)
+   c:	31 34 2e             	xor    %esi,(%rsi,%rbp,1)
+   f:	31 2e                	xor    %ebp,(%rsi)
+  11:	31 20                	xor    %esp,(%rax)
+  13:	32 30                	xor    (%rax),%dh
+  15:	32 34 30             	xor    (%rax,%rsi,1),%dh
+  18:	37                   	(bad)
+  19:	30 31                	xor    %dh,(%rcx)
+  1b:	20 28                	and    %ch,(%rax)
+  1d:	52                   	push   %rdx
+  1e:	65 64 20 48 61       	gs and %cl,%fs:0x61(%rax)
+  23:	74 20                	je     45 <main+0x45>
+  25:	31 34 2e             	xor    %esi,(%rsi,%rbp,1)
+  28:	31 2e                	xor    %ebp,(%rsi)
+  2a:	31                   	.byte 0x31
+  2b:	2d                   	.byte 0x2d
+  2c:	37                   	(bad)
+  2d:	29 00                	sub    %eax,(%rax)
+
+Disassembly of section .note.gnu.property:
+
+0000000000000000 <.note.gnu.property>:
+   0:	04 00                	add    $0x0,%al
+   2:	00 00                	add    %al,(%rax)
+   4:	20 00                	and    %al,(%rax)
+   6:	00 00                	add    %al,(%rax)
+   8:	05 00 00 00 47       	add    $0x47000000,%eax
+   d:	4e 55                	rex.WRX push %rbp
+   f:	00 02                	add    %al,(%rdx)
+  11:	00 01                	add    %al,(%rcx)
+  13:	c0 04 00 00          	rolb   $0x0,(%rax,%rax,1)
+	...
+  1f:	00 01                	add    %al,(%rcx)
+  21:	00 01                	add    %al,(%rcx)
+  23:	c0 04 00 00          	rolb   $0x0,(%rax,%rax,1)
+  27:	00 01                	add    %al,(%rcx)
+  29:	00 00                	add    %al,(%rax)
+  2b:	00 00                	add    %al,(%rax)
+  2d:	00 00                	add    %al,(%rax)
+	...
+
+Disassembly of section .eh_frame:
+
+0000000000000000 <.eh_frame>:
+   0:	14 00                	adc    $0x0,%al
+   2:	00 00                	add    %al,(%rax)
+   4:	00 00                	add    %al,(%rax)
+   6:	00 00                	add    %al,(%rax)
+   8:	01 7a 52             	add    %edi,0x52(%rdx)
+   b:	00 01                	add    %al,(%rcx)
+   d:	78 10                	js     1f <.eh_frame+0x1f>
+   f:	01 1b                	add    %ebx,(%rbx)
+  11:	0c 07                	or     $0x7,%al
+  13:	08 90 01 00 00 1c    	or     %dl,0x1c000001(%rax)
+  19:	00 00                	add    %al,(%rax)
+  1b:	00 1c 00             	add    %bl,(%rax,%rax,1)
+  1e:	00 00                	add    %al,(%rax)
+  20:	00 00                	add    %al,(%rax)
+  22:	00 00                	add    %al,(%rax)
+  24:	3b 00                	cmp    (%rax),%eax
+  26:	00 00                	add    %al,(%rax)
+  28:	00 41 0e             	add    %al,0xe(%rcx)
+  2b:	10 86 02 43 0d 06    	adc    %al,0x60d4302(%rsi)
+  31:	76 0c                	jbe    3f <main+0x3f>
+  33:	07                   	(bad)
+  34:	08 00                	or     %al,(%rax)
+	...

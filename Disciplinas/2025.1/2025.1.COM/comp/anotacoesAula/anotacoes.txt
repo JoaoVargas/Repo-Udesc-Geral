@@ -1,0 +1,10 @@
+opearadores a serem implementados
+- &&
+- ||
+- !
+- ==
+- !=
+- >
+- <
+- >=
+- <=

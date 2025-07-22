@@ -1,0 +1,22 @@
+/home/jotapc/.ghcup/ghc/9.8.4/lib/ghc-9.8.4/lib/x86_64-linux-ghc-9.8.4/rts-1.0.2/include/MachDeps.h:
+  hash: 94f383f2743e37d6240fdf24b33714450bccce7dc5d0aa8e593f26e1b8a3d4af
+/home/jotapc/.ghcup/ghc/9.8.4/lib/ghc-9.8.4/lib/x86_64-linux-ghc-9.8.4/rts-1.0.2/include/ghcautoconf.h:
+  hash: 5b150f6e71b36c87ffa93b4663abb9f9e7e366cecba2c5415b960dc6ceb1d658
+/home/jotapc/.ghcup/ghc/9.8.4/lib/ghc-9.8.4/lib/x86_64-linux-ghc-9.8.4/rts-1.0.2/include/ghcconfig.h:
+  hash: 03f4611ae97decc9e8c76c212bf7886d003b29d5c62b43fee6623a799f6e5fdf
+/home/jotapc/.ghcup/ghc/9.8.4/lib/ghc-9.8.4/lib/x86_64-linux-ghc-9.8.4/rts-1.0.2/include/ghcplatform.h:
+  hash: 9d92e7810489d6597bf8299451c589ace48db86985437918f5a9e745629103e7
+/home/jotapc/.ghcup/ghc/9.8.4/lib/ghc-9.8.4/lib/x86_64-linux-ghc-9.8.4/rts-1.0.2/include/ghcversion.h:
+  hash: 95162794a3bf5e6167631fdd41a509846597231d523d0f21a76713b1f801373c
+? /home/jotapc/Projects/Repo-Udesc-Geral/Disciplinas/2025.1/2025.1.COM/Trabalho/compilador/.stack-work/dist/x86_64-linux/ghc-9.8.4/build/autogen/Paths_compilador.hs
+: hash: 5a687a26c9907855cebc0e36513844674670ee35f40ebea577d9089650c949a6
+/home/jotapc/Projects/Repo-Udesc-Geral/Disciplinas/2025.1/2025.1.COM/Trabalho/compilador/compilador.cabal:
+  hash: ed01d179af711acde72ce56e94ba32ee666eeefb22781aec3a2289c83a2d06ef
+/home/jotapc/Projects/Repo-Udesc-Geral/Disciplinas/2025.1/2025.1.COM/Trabalho/compilador/src/DataTypes.hs:
+  hash: 2e35e79745e9c370e4497a7ff35ca88b9674cc11379eec9e8382868def16b40f
+/home/jotapc/Projects/Repo-Udesc-Geral/Disciplinas/2025.1/2025.1.COM/Trabalho/compilador/src/Lexer.x:
+  hash: 3d83a6bb8d6e5db7c8a566b4b036dd14ae0866c76ddc20f9d73509988aede651
+/home/jotapc/Projects/Repo-Udesc-Geral/Disciplinas/2025.1/2025.1.COM/Trabalho/compilador/src/Parser.y:
+  hash: 814a5e15653610add5b8a6d6af5a260869054f995f7cceebac06acd5e9a2ed71
+/usr/include/stdc-predef.h:
+  hash: 8db4f65e62cade8ae4d9b77960ee6aee093255acc1b637e3fb37d79179733b15

@@ -1,0 +1,15 @@
+- cabal update
+- cabal install happy
+- cabal install alex
+- alex Lex.x
+- ghci -package array Lex.hs
+    - Dentro do ghci, para testar se esta funcinando:
+        - excutar função testLex
+        - após entrar na fução, inserir "0*2" (sem aspas)
+- happy Parser.y
+    - para ver itens gerados:
+        - happy -i ParserP.y
+- ghci -package array Parser.hs
+    - Dentro do ghci, para executar:
+        - executar função main
+        - após entrar na função, inserir "0+2+3" (sem aspas)

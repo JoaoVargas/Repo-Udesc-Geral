@@ -1,0 +1,21 @@
+Mensagens::
+ALERTA -> coerção int para double em:
+	Req (IdVar "a") (IdVar "b")
+
+ALERTA -> coerção int para double em:
+	Ret (Just (IdVar "b"))
+
+ALERTA -> coerção double para int em:
+	Atrib "a" (Const (CDouble 10.5))
+
+ALERTA -> coerção double para int em:
+	Mul (IdVar "x") (Const (CInt 2))
+
+ALERTA -> coerção int para double em:
+	"maior" :->: (["a" :#: (TInt,0),"b" :#: (TDouble,0)],TInt)
+
+ALERTA -> coerção int para double em:
+	Atrib "y" (Chamada "maior" [IdVar "a",IdVar "b"])
+
+
+AST: Prog ["maior" :->: (["a" :#: (TInt,0),"b" :#: (TDouble,0)],TInt)] [("maior",["a" :#: (TInt,0),"b" :#: (TDouble,0)],[If (Rel (Req (IntDouble (IdVar "a")) (IdVar "b"))) [Ret (Just (IdVar "a"))] [],Ret (Just (IntDouble (IdVar "b")))])] ["a" :#: (TInt,0),"b" :#: (TInt,0),"x" :#: (TDouble,0),"y" :#: (TDouble,0)] [Atrib "a" (DoubleInt (Const (CDouble 10.5))),Atrib "x" (Const (CDouble 10.5)),Atrib "b" (Add (Mul (Const (CInt 2)) (IdVar "a")) (DoubleInt (Mul (IdVar "x") (IntDouble (Const (CInt 2)))))),Atrib "y" (IntDouble (Chamada "maior" [IdVar "a",IdVar "b"]))]

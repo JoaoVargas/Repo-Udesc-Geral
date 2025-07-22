@@ -1,0 +1,15 @@
+Implemente um interpretador de expressões lógicas, relacionais 
+e aritméticas, o interpretador deve ler a expressão e apresentar 
+o resultado.
+
+- Uma expressão relacional tem como termos expressões aritméticas 
+  e envolve os operadores: <, >, <=, >=, ==, /=.
+
+- Uma expressão lógica tem como termos expressões relacionais 
+  e envolve os seguintes operadores: && (conjunção), || (disjunção),
+  ! (negação). Os operadores binários && e || têm a mesma precedência
+  e a associatividade é da esquerda para a direita, o operador 
+  ! é um operador unário e possui a maior precedência.
+
+- Os operadores aritméticos (+, -, *, /) têm associatividade da 
+  esquerda para direita e a precedência usual.
