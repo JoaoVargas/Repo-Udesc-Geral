@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex7-JS</title>
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+      rel="stylesheet" 
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
+      crossorigin="anonymous">
+  </head>
+  <body data-bs-theme="dark">
+    <!-- bootstrap ------------------------------------------------------------- -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script>
+      function handleChangeTema() {
+        const body = document.querySelector('body');
+        const temaAtual = body.getAttribute('data-bs-theme');
+
+        if (temaAtual === 'dark') {
+            body.setAttribute('data-bs-theme', 'light');
+        } else {
+            body.setAttribute('data-bs-theme', 'dark');
+        }
+      }
+    </script>
+    <!-- ------------------------------------------------------------------------ -->
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Hotel</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Acomodações</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#pacotes">Pacotes</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Saiba Mais
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Duvidas Frequentes</a></li>
+                <li><a class="dropdown-item" href="#eventos">Eventos</a></li>
+                <li><a class="dropdown-item" href="#">Localização</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-auto w-100 justify-content-end">
+            <li class="nav-item">
+              <button type="button" 
+              class="btn btn-link nav-link" 
+              data-bs-toggle="modal" 
+              data-bs-target="#entrarModal">
+                Entrar
+              </button>
+            </li>
+            <li class="nav-item">
+              <button type="button" 
+              class="btn btn-link nav-link" 
+              data-bs-toggle="modal" 
+              data-bs-target="#cadastrarModal">
+                Cadastrar
+              </button>
+            </li>
+            <li class="nav-item">
+              <button type="button" 
+              class="btn btn-link nav-link" 
+              onclick="handleChangeTema()">
+                Tema
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <script> 
+      const handleCapitalizacao = (capitalizacao) => { 
+        capitalizacao
+        ? document.entrarForm.entrarNome.value = document.entrarForm.entrarNome.value.toUpperCase()
+        : document.entrarForm.entrarNome.value = document.entrarForm.entrarNome.value.toLowerCase()
+      } 
+
+      function dataAtualFormatada() {
+        const data = new Date();
+
+        const diasDaSemana = [
+          'domingo', 
+          'segunda-feira', 
+          'terça-feira', 
+          'quarta-feira', 
+          'quinta-feira', 
+          'sexta-feira', 
+          'sábado'
+        ];
+        const diaSemana = diasDaSemana[data.getDay()];
+        const dia = String(data.getDate()).padStart(2, '0');
+        const mes = String(data.getMonth() + 1).padStart(2, '0'); 
+        const ano = data.getFullYear();
+
+        return [diaSemana, [dia,mes,ano]];
+      }
+      function saudar() {
+        const data = new Date();
+        const hora = data.getHours();
+
+        if (hora >= 0 && hora < 12) {
+          return "Bom dia";
+        } else if (hora >= 12 && hora < 18) {
+          return "Boa tarde";
+        } else {
+          return "Boa noite";
+        }
+      }
+
+      const handleEntrarSubmit = (e) => {
+        e.preventDefault();
+
+        const [diaSemana, data] = dataAtualFormatada();
+        const saudacao = saudar();
+
+        alert(`${saudacao}, ${document.entrarForm.entrarNome.value}, hoje é ${diaSemana}, ${data[0]}/${data[1]}/${data[2]} `);
+      }
+
+    </script> 
+    <div 
+    class="modal fade" 
+    id="entrarModal" 
+    tabindex="-1" 
+    aria-labelledby="entrarModalLabel" 
+    aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" >
+        <div class="modal-content">
+          <form name="entrarForm" onsubmit="handleEntrarSubmit(event)">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="entrarModalLabel">Entrar</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="entrarNome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="entrarNome" name="entrarNome" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3 form-check">
+                <input 
+                type="checkbox" 
+                class="form-check-input" 
+                id="entrarCheck" 
+                onclick="handleCapitalizacao(this.checked)">
+                <label class="form-check-label" for="entrarCheck">Capitalização do nome</label>
+              </div>
+              <div class="mb-3">
+                <label for="entrarEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="entrarEmail" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="entrarSenha" class="form-label">Senha</label>
+                <input type="password" class="form-control" id="entrarSenha">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script> 
+      const handleCapitalizacaoCadastrar = (capitalizacao) => { 
+        capitalizacao
+        ? document.cadastrarForm.cadastrarNome.value = document.cadastrarForm.cadastrarNome.value.toUpperCase()
+        : document.cadastrarForm.cadastrarNome.value = document.cadastrarForm.cadastrarNome.value.toLowerCase()
+      } 
+
+      const handleCadastrarSubmit = (e) => {
+        e.preventDefault();
+        
+        if (document.cadastrarForm.cadastrarNome.value == "") { 
+          alert ("Campo Nome não preenchido - Form não submetido") 
+          return false 
+        } 
+        
+        if (document.cadastrarForm.cadastrarEmail.value == "") { 
+          alert ("Campo Email não preenchido - Form não submetido") 
+          return false 
+        } 
+
+        console.log(document.cadastrarForm.cadastrarNascimento.value);
+        
+        
+        if (document.cadastrarForm.cadastrarNascimento.value == "") { 
+          alert ("Campo Data de Nascimento não preenchido - Form não submetido") 
+          return false 
+        } 
+        
+        if (document.cadastrarForm.cadastrarSenha.value == "") { 
+          alert ("Campo Senha não preenchido - Form não submetido") 
+          return false 
+        } 
+        
+        if (document.cadastrarForm.cadastrarSenhaConfirmacao.value == "") { 
+          alert ("Campo Confirme a Senha não preenchido - Form não submetido") 
+          return false 
+        } 
+        
+        if (document.cadastrarForm.cadastrarSenha.value !== document.cadastrarForm.cadastrarSenhaConfirmacao.value) { 
+          alert ("Senhas não batem - Form não submetido") 
+          return false 
+        } 
+
+        alert ("Enviado") 
+        document.cadastrarForm.submit();
+        return true 
+      }
+
+    </script> 
+    <div 
+    class="modal fade" 
+    id="cadastrarModal" 
+    tabindex="-1" 
+    aria-labelledby="cadastrarModalLabel" 
+    aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" >
+        <div class="modal-content">
+          <form 
+          name="cadastrarForm" 
+          onsubmit="handleCadastrarSubmit(event)">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="cadastrarModalLabel">Cadastrar</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="cadastrarNome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="cadastrarNome" name="cadastrarNome" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3 form-check">
+                <input 
+                type="checkbox" 
+                class="form-check-input" 
+                id="cadastrarCheck" 
+                onclick="handleCapitalizacao(this.checked)">
+                <label class="form-check-label" for="cadastrarCheck">Capitalização do nome</label>
+              </div>
+              <div class="mb-3">
+                <label for="cadastrarEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="cadastrarEmail" aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="cadastrarNascimento" class="form-label">Data de nascimento</label>
+                <input  type="date" class="form-control" id="cadastrarNascimento">
+              </div>
+              <div class="mb-3">
+                <label for="cadastrarSenha" class="form-label">Senha</label>
+                <input  type="password" class="form-control" id="cadastrarSenha">
+              </div>
+              <div class="mb-3">
+                <label for="cadastrarSenhaConfirmacao" class="form-label">Confirme a senha</label>
+                <input  type="password" class="form-control" id="cadastrarSenhaConfirmacao">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    
+
+    <div class="container col-xxl-8 px-4 ">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5 ">
+        <div class="col-10 col-sm-12 col-lg-6 justify-content-center">
+          <img 
+          src="./logo_hotel.png" 
+          class="d-block mx-lg-auto img-fluid" 
+          width="100%" 
+          height="400" 
+          loading="lazy">
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
+            Hotel Hotel
+          </h1>
+          <p class="lead">
+            Descubra a combinação perfeita entre luxo, conforto e tranquilidade. Com vistas deslumbrantes, serviço de excelência e uma atmosfera relaxante, proporcionamos a você uma experiência inesquecível.
+          </p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <button 
+            type="button" 
+            class="btn btn-primary btn-md px-4 me-md-2">
+              Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container px-4 py-5" id="eventos">
+      <h2 class="pb-2 border-bottom">Eventos</h2>
+  
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://www.divvino.com.br/blog/wp-content/uploads/2019/07/degusta%C3%A7%C3%A3o-de-vinho1.jpg'); background-size: cover; background-position-x: center;">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Degustação de Vinhos</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="d-flex align-items-center me-3 gap-2">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <small>Salão A</small>
+                </li>
+                <li class="d-flex align-items-center gap-2">
+                  <i class="bi bi-calendar-date"></i>
+                  <small>3d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgMI2xlvP9jFuLIw9mn9hpC1vu0WiVi0dlYA1vJhrWDPIu_iSI_TDUc_S3WtzGPkay4lM8x9DGOZaVzCedy1uabtYPazMeNE-4q3B1UWsX8OJGuYf7oqPJuoupWgVuA4tCm1baBuzcBxKMa8X9UtjJ9wKjb4OzJSAgpbqw-uAppb4E-syxWnxRS1f07po4/w1200-h675-p-k-no-nu/skylab.png'); background-size: cover; background-position-x: center;">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Festival de Música ao Vivo</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="d-flex align-items-center me-3 gap-2">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <small>Salão B</small>
+                </li>
+                <li class="d-flex align-items-center gap-2">
+                  <i class="bi bi-calendar-date"></i>
+                  <small>4d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('https://svadhyaya.com.br/wp-content/uploads/2019/12/IMG_9268-Editar.jpg'); background-size: cover; background-position-x: center;">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Workshop de Bem-Estar e Yoga</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="d-flex align-items-center me-3 gap-2">
+                  <i class="bi bi-geo-alt-fill"></i>
+                  <small>Salão A</small>
+                </li>
+                <li class="d-flex align-items-center gap-2">
+                  <i class="bi bi-calendar-date"></i>
+                  <small>5d</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+    </div>
+
+    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="height: 40rem;">
+          <img src="https://www.hilton.com/im/en/CZMPCHH/7888781/czmpc-pool-3.jpg?impolicy=crop&cw=5000&ch=3203&gravity=NorthWest&xposition=0&yposition=64&rw=1280&rh=820" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" style="height: 40rem;">
+          <img src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+        <div class="carousel-item" style="height: 40rem;" >
+          <img src="https://images.bubbleup.com/width1920/quality35/mville2017/1-brand/1-margaritaville.com/gallery-media/220803-compasshotel-medford-pool-73868-1677873697-78625-1694019828.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="container my-5" id="pacotes">
+      <h2 class="pb-2 border-bottom">Pacotes</h2>
+      <div class="row row-cols-1 row-cols-lg-3 py-5 text-center">
+      
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Estudantes</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">10%<small class="text-body-secondary fw-light"> de desconto</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Perfeito para caravanas</li>
+                <li>Área própria para estudos</li>
+                <li>Acesso a bibliotecas</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg btn-primary">Reservar</button>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Eventos</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">10%<small class="text-body-secondary fw-light"> de desconto</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Caravanas são bem vindas</li>
+                <li>Eventos internos e externos</li>
+                <li>Pessoal qualificado</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg btn-primary">Reservar</button>
+            </div>
+          </div>
+        </div>
+      
+        <div class="col">
+          <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+              <h4 class="my-0 fw-normal">Empresas</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">15%<small class="text-body-secondary fw-light"> de desconto</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>Indicado para viagens a serviço</li>
+                <li>Acesso a áreas para reunião</li>
+                <li>Suporte prioriário</li>
+              </ul>
+              <button type="button" class="w-100 btn btn-lg btn-primary">Reservar</button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+    </div>
+
+  </body>
+</html>
